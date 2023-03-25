@@ -1,0 +1,65 @@
+package DataParsing;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public final class Database {
+    // Singleton Pattern
+    private static final Database instance;
+
+    static {
+        try {
+            instance = new Database();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // Keeping data relative to the program.
+    private final String gameDataXML = "bgg50Games.xml";
+    private final String _gameDataPath = "data\\game_data\\";
+    private final String _userDataPath = "data\\user_data\\";
+    private final File gameDataBase = new File(gameDataXML);
+    private String absPath = gameDataBase.getAbsolutePath();
+    private String gameDataPath = absPath.replace(gameDataXML, _userDataPath);
+    private HashMap<String, Game> gameHash = new HashMap<String, Game>();
+    private ArrayList<Game> gameList;
+
+    private Database() throws IOException {
+        //File tmpdir = new File(absPath.replace(gameDataXML, _userDataPath))
+
+        /*
+        String path = absPath.replace(gameDataXML, _gameDataPath + gameDataXML);
+        XMLParserUtility parser = new XMLParserUtility(path);
+        gameList = parser.retrieveGameList();
+        for (Game game: gameList){
+            gameHash.put(game.getGameId(), game);
+        }*/
+    }
+
+    /**
+     * Get the Instance of the singleton
+     * @return Return the Database instance.
+     */
+    public static Database getInstance(){
+        return instance;
+    }
+
+    /**
+     * Get the GameHash of the database.
+     * @return Returns the of Hashmap[Game ID String, Game].
+     */
+    public HashMap<String, Game> GetGameHash(){
+        return gameHash;
+    }
+
+    /**
+     * Get the GameList for O(n).
+     * @return Returns a game ArrayList of game objects.
+     */
+    public ArrayList<Game> GetGameList(){
+        return gameList;
+    }
+}

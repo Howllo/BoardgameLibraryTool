@@ -1,21 +1,15 @@
-/**
+package DataParsing; /**
  * CS321, Beth Allen
  *
  * This example code walks the elements of a DOM tree.  XML documents are retrieved using
  * The default DOM parsing features included in Java.   A document tree or DOM is stored
  * as a hierarchical collection of linked nodes.
  *
- * An XMLParserUtility object is created and assigned to our input file.
- * It will retrieve an ArrayList of Game objects.
+ * An DataParsing.XMLParserUtility object is created and assigned to our input file.
+ * It will retrieve an ArrayList of DataParsing.Game objects.
  *
  */
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.w3c.dom.*;
-
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
