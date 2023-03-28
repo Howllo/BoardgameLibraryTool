@@ -1,6 +1,7 @@
 package DataParsing;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,15 +29,18 @@ public final class Database {
     private ArrayList<Game> gameList;
 
     private Database() throws IOException {
-        //File tmpdir = new File(absPath.replace(gameDataXML, _userDataPath))
-
-        /*
-        String path = absPath.replace(gameDataXML, _gameDataPath + gameDataXML);
-        XMLParserUtility parser = new XMLParserUtility(path);
-        gameList = parser.retrieveGameList();
-        for (Game game: gameList){
-            gameHash.put(game.getGameId(), game);
-        }*/
+        try{
+            String path = absPath.replace(gameDataXML, _gameDataPath + gameDataXML);
+            XMLParserUtility parser = new XMLParserUtility(path);
+            gameList = parser.retrieveGameList();
+            for (Game game: gameList){
+                gameHash.put(game.getGameId(), game);
+            }
+        } catch (FileNotFoundException e1){
+            System.out.println("File not found.");
+        } catch (IOException e2){
+            System.out.println("Unable to parse..");
+        }
     }
 
     /**
