@@ -1,20 +1,25 @@
 package UserInterface;
 
+import Backend.Login.LoginSystem;
 import DataParsing.Database;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Comparator;
 
 public class LoginPanel extends JPanel {
-    private Dimension OriginalDimension;
+    private final Dimension OriginalDimension;
 
     // Text Fields
-    private JPanel textFieldPanel = new JPanel();
-    private final JTextField usernameField = new JTextField("");
-    private final JLabel userNameLabel = new JLabel("Username");
-    private final JPasswordField passwordField = new JPasswordField("");
-    private final JLabel passwordLabel = new JLabel("Password");
+    private final JPanel textFieldPanel;
+    private final JTextField usernameField = new JTextField("Username...");
+    private final JLabel userNameLabel = new JLabel("Invalid Username");
+    private final JPasswordField passwordField = new JPasswordField("Password...");
+    private final JLabel passwordLabel = new JLabel("Invalid Password");
+    public final String colorText = "#676767";
 
     // Remember Me
     JCheckBox rememberMeLogin = new JCheckBox("Remember Me");
@@ -29,57 +34,103 @@ public class LoginPanel extends JPanel {
 
     public LoginPanel(JFrame parent){
         OriginalDimension = new Dimension(getSize().width, getSize().height);
-
         parentFrame = parent;
-
         setMaximumSize(getMinimumSize());
         setMinimumSize(getMinimumSize());
         setPreferredSize(getPreferredSize());
         setVisible(true);
         setBackground(Color.decode("#333333"));
         setLocation(375, 75);
+        textFieldPanel  = new JPanel(new BorderLayout());
+        passwordField.setEchoChar((char)0);
+
+        // Set Labels
+        userNameLabel.setVisible(false);
+        passwordLabel.setVisible(false);
 
         // Add Components in order
         CreateTextField();
-        CreateCheckbox();
-        CreateForgetPassword();
+        CreateSecondRow();
         CreateButton();
     }
 
     private void CreateTextField(){
+        JPanel userNameHolder = new JPanel(new GridLayout(2, 9));
+        JPanel passwordHolder = new JPanel(new GridLayout(2, 9));
+
+        textFieldPanel.setSize(getSize().width / 2, getSize().height / 2);
         textFieldPanel.setSize(OriginalDimension.width, textFieldPanel.getHeight());
         textFieldPanel.setBackground(Color.decode("#333333"));
-
-
-        // Set Fill
-        usernameField.setHorizontalAlignment(JTextField.CENTER);
+        userNameHolder.setBackground(Color.decode("#333333"));
+        passwordHolder.setBackground(Color.decode("#333333"));
 
         // Set Background
         usernameField.setOpaque(false);
         passwordField.setOpaque(false);
-        //usernameField.setBorder(BorderFactory.createEmptyBorder());
-        //passwordField.setBorder(BorderFactory.createEmptyBorder());
+        usernameField.setBorder(BorderFactory.createLineBorder(Color.decode(colorText)));
+        passwordField.setBorder(BorderFactory.createLineBorder(Color.decode(colorText)));
+
+        // Set Label
+        userNameLabel.setForeground(Color.RED);
+        passwordLabel.setForeground(Color.RED);
 
         // Set Text
-        Font newFront = new Font(usernameField.getFont().getName(), usernameField.getFont().getStyle(), 36);
+        Font newFront = new Font(usernameField.getFont().getName(), usernameField.getFont().getStyle(), 24);
         usernameField.setForeground(Color.decode("#808080"));
         passwordField.setForeground(Color.decode("#808080"));
         usernameField.setFont(newFront);
         passwordField.setFont(newFront);
 
         // Set Size
-        usernameField.setColumns(15);
-        passwordField.setColumns(15);
+        //usernameField.setColumns(10);
+        passwordField.setColumns(5);
 
         // Add to Panel
-        textFieldPanel.add(usernameField);
-        textFieldPanel.add(userNameLabel);
-        textFieldPanel.add(passwordField);
-        textFieldPanel.add(passwordLabel);
-        add(textFieldPanel);
+        userNameHolder.add(usernameField);
+        userNameHolder.add(userNameLabel);
+        passwordHolder.add(passwordField);
+        passwordHolder.add(passwordLabel);
+
+        // Add to Text Field
+        textFieldPanel.add(userNameHolder, BorderLayout.PAGE_START);
+        textFieldPanel.add(passwordHolder, BorderLayout.CENTER);
+
+        // Add To Login Panel
+        add(textFieldPanel, BorderLayout.PAGE_START);
+
+        // Action
+        usernameField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if(usernameField.getText().equals("Username...")){
+                    usernameField.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+            }
+        });
+
+        passwordField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                char[] testArray = {'P', 'a', 's','s','w','o','r','d','.','.','.'};
+                if(Arrays.equals(passwordField.getPassword(), testArray)){
+                    passwordField.setText("");
+                    passwordField.setEchoChar('*');
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+            }
+        });
     }
 
-    private void CreateCheckbox(){
+    private void CreateSecondRow(){
+        JPanel secondPanel = new JPanel(new GridLayout(1, 50));
+
         // Remove the WhiteBox
         rememberMeLogin.setOpaque(false);
 
@@ -89,26 +140,36 @@ public class LoginPanel extends JPanel {
         // Set Text Color
         rememberMeLogin.setForeground(Color.decode("#808080"));
 
-        // Add Component
-        add(rememberMeLogin);
-    }
-
-    private void CreateForgetPassword(){
         // Set Colors
         forgotButton.setOnMouseClick(Color.decode("#636363"));
         forgotButton.setOnMouseHover(Color.decode("#828282"));
         forgotButton.setOnMouseExit(Color.decode("#d7d7d7"));
 
+        // Set Panels
+        secondPanel.setBackground(Color.decode("#333333"));
+        secondPanel.add(rememberMeLogin, BorderLayout.LINE_START);
+        secondPanel.add(forgotButton, BorderLayout.LINE_END);
+        secondPanel.setVisible(true);
+
         // Add Component
-        add(forgotButton);
+        add(secondPanel, BorderLayout.PAGE_END);
     }
 
     private void CreateButton(){
+        JPanel panel = new JPanel(new BorderLayout());
         loginButton.setBackground(Color.decode("#0071bc"));
         loginButton.setText("LOG IN");
         loginButton.setForeground(Color.white);
         loginButton.setFocusPainted(false);
-        add(loginButton);
+
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LoginSystem.LoadUserData(usernameField.getText(), passwordField.getPassword(), LoginPanel.this);
+            }
+        });
+        panel.add(loginButton, BorderLayout.SOUTH);
+        add(panel);
     }
 
     @Override
@@ -166,5 +227,21 @@ public class LoginPanel extends JPanel {
     public void paint(Graphics g) {
         setSize(resizePanel());
         super.paint(g);
+    }
+
+    public JLabel GetUserNameLabel(){
+        return userNameLabel;
+    }
+
+    public JLabel GetPasswordLabel(){
+        return passwordLabel;
+    }
+
+    public JTextField GetUserNameTextField(){
+        return usernameField;
+    }
+
+    public JTextField GetPasswordTextField(){
+        return passwordField;
     }
 }
