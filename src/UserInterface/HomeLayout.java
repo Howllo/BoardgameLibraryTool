@@ -28,8 +28,8 @@ public class HomeLayout {
     public void AddHomePanel(){
 
         HomePanel home_panel = new HomePanel();
-        layout.setLayout(new GridLayout(2,2));
-        layout.add(home_panel, BorderLayout.CENTER);
+        layout.setLayout(new BorderLayout());
+        layout.add(home_panel, BorderLayout.WEST);
         home_panel.setVisible(true);
 
 
