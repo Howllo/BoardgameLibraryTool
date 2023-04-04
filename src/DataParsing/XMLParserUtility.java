@@ -129,13 +129,23 @@ public class XMLParserUtility {
      * @return a string containing the field value
      */
     private String parseTextField(Node xmlGameNode, String fieldname) {
+
         NodeList fields = xmlGameNode.getChildNodes();
         String fieldText = "unknown";
+        String typeText = "unknown";
+
         for (int i = 0; i < fields.getLength(); i++) {
+
             Node field = fields.item(i);
+
             if (field.getNodeName().equals(fieldname)) {
-                NamedNodeMap attributes = field.getAttributes();
-                fieldText = attributes.getNamedItem("value").getNodeValue();
+
+                    NamedNodeMap attributes = field.getAttributes();
+                    typeText = attributes.getNamedItem("type").getNodeValue();
+
+                    if(typeText.equals("primary"))
+                    fieldText = attributes.getNamedItem("value").getNodeValue();
+
             }
         }
         return fieldText;
