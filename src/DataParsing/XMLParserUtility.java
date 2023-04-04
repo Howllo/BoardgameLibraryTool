@@ -115,7 +115,7 @@ public class XMLParserUtility {
 
         title = parseTextField(xmlGameNode,"name");
       //  thumburi = parseTextField(xmlGameNode, "thumbnail");
-       // description = parseDescField(xmlGameNode, "description");
+      //  description = parseDescField(xmlGameNode, "description");
         year = parseIntegerField(xmlGameNode, "yearpublished");
         minPlayer = parseIntegerField(xmlGameNode, "minplayers");
         maxPlayer = parseIntegerField(xmlGameNode, "maxplayers");
