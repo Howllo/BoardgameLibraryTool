@@ -1,4 +1,7 @@
-package DataParsing;
+package Backend.Database;
+
+import DataParsing.Game;
+import DataParsing.XMLParserUtility;
 
 import java.io.File;
 import java.io.FileNotFoundException;

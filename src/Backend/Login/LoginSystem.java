@@ -1,6 +1,6 @@
 package Backend.Login;
 
-import DataParsing.Database;
+import Backend.Database.Database;
 import UserInterface.LoginSystem.LoginPanel;
 
 import javax.swing.*;

@@ -53,6 +53,14 @@ public class EntrancePanel extends JPanel {
         c.gridx = 1;
 
         add(signUpButton, c);
+
+        signUpButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                mainWindow.AddSignUpPanel();
+            }
+        });
     }
 
     public void CreateLoginButton(){

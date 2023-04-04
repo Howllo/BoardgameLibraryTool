@@ -2,6 +2,7 @@ package UserInterface;
 
 import UserInterface.LoginSystem.EntrancePanel;
 import UserInterface.LoginSystem.LoginPanel;
+import UserInterface.LoginSystem.SignupPanel;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -42,6 +43,15 @@ public class MainWindow {
         content.setBackground(Color.decode("#4d4d4d"));
         window.setContentPane(content);
         window.add(new LoginPanel(window));
+        window.setSize(1280, 720);
+    }
+
+    public void AddSignUpPanel(){
+        JPanel content = new JPanel(new GridBagLayout());
+        content.setBorder(new EmptyBorder(20,20, 20, 20));
+        content.setBackground(Color.decode("#4d4d4d"));
+        window.setContentPane(content);
+        window.add(new SignupPanel(window));
         window.setSize(1280, 720);
     }
 }

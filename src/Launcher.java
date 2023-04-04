@@ -1,4 +1,3 @@
-import DataParsing.Database;
 import UserInterface.MainWindow;
 
 import javax.swing.*;
