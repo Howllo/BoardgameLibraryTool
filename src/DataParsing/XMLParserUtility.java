@@ -101,6 +101,7 @@ public class XMLParserUtility {
       //  Integer bgg_rank=0;
         String thumburi ="tbd";
         String title="tbd";
+        String description ="tbd";
         Integer year = 0;
         Integer minPlayer;
         Integer maxPlayer;
@@ -114,11 +115,12 @@ public class XMLParserUtility {
 
         title = parseTextField(xmlGameNode,"name");
       //  thumburi = parseTextField(xmlGameNode, "thumbnail");
+       // description = parseDescField(xmlGameNode, "description");
         year = parseIntegerField(xmlGameNode, "yearpublished");
         minPlayer = parseIntegerField(xmlGameNode, "minplayers");
         maxPlayer = parseIntegerField(xmlGameNode, "maxplayers");
 
-        return new Game(title,thumburi, year, bgg_id, minPlayer, maxPlayer);
+        return new Game(title,thumburi, description, year, bgg_id, minPlayer, maxPlayer);
     }
 
     /**
@@ -149,6 +151,30 @@ public class XMLParserUtility {
             }
         }
         return fieldText;
+    }
+
+    private String parseDescField(Node xmlGameNode, String fieldname){
+
+        NodeList fields = xmlGameNode.getChildNodes();
+        String descText = "unknown";
+
+        for(int i = 0; i < fields.getLength(); i++) {
+
+            Node field = fields.item(i);
+
+
+            if (field.getNodeName().equals(fieldname)) ;
+            {
+                NamedNodeMap desc = field.getAttributes();
+                descText = desc.getNamedItem("description").getNodeValue();
+
+            }
+        }
+
+        return descText;
+
+
+
     }
 
     /**
