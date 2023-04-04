@@ -1,12 +1,12 @@
-package UserInterface;
+package UserInterface.LoginSystem;
 
 import Backend.Login.LoginSystem;
-import DataParsing.Database;
+import UserInterface.DimensionCompare;
+import UserInterface.JTextButton;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Comparator;
 
