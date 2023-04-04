@@ -29,7 +29,7 @@ public class MainWindow {
         content.setBorder(new EmptyBorder(20, 20, 20, 20));
         content.setBackground(Color.decode("#4d4d4d"));
         window.setContentPane(content);
-        window.add(new EntrancePanel());
+        window.add(new EntrancePanel(this));
         window.setSize(1280, 720);
     }
 

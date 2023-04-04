@@ -1,5 +1,8 @@
 package UserInterface.LoginSystem;
 
+import UserInterface.MainWindow;
+import com.sun.tools.javac.Main;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,7 +17,11 @@ public class EntrancePanel extends JPanel {
     JButton guessLogin = new JButton("GUESS");
     GridBagConstraints c = new GridBagConstraints();
 
-    public EntrancePanel() {
+    // Main Menu
+    MainWindow mainWindow;
+
+    public EntrancePanel(MainWindow mainWindow) {
+        this.mainWindow = mainWindow;
         setLayout(new GridBagLayout());
         OriginalDimension = new Dimension(getSize().width, getSize().height);
         setMaximumSize(getMinimumSize());
@@ -67,6 +74,14 @@ public class EntrancePanel extends JPanel {
         c.gridheight = 4;
 
         add(panel, c);
+
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                mainWindow.AddLoginPanel();
+            }
+        });
     }
 
     public void CreateGuessLoginButton(){
@@ -91,7 +106,8 @@ public class EntrancePanel extends JPanel {
         guessLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                //TODO: Add home menu].
+                System.out.println("Go to home menu.");
             }
         });
     }
