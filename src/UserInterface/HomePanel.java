@@ -5,25 +5,43 @@ import java.awt.*;
 
 public class HomePanel extends JPanel {
 
-    JPanel home_panel= new JPanel(new GridLayout (2,2));
+    JPanel home_panel = new JPanel();
+
 public HomePanel(){
 
-    setSize(800, 500);
+    setSize(1166, 1000);
     setBackground(Color.decode("#333333"));
+
     HomeButtons();
+
+
 
 }
 
+    public HomePanel(int s, int a){
+
+        setSize(s, a);
+        setBackground(Color.decode("#333333"));
+
+
+        AccountButton();
+
+
+    }
+
+    public HomePanel(int w){
+
+        setSize(w, 300);
+        setBackground(Color.decode("#333333"));
+
+
+        GameGrid();
+
+
+    }
+
+
 private void HomeButtons(){
-
-
- //   JPanel home_panel= new JPanel(new GridLayout (2,2));
-
-
-  //  home_panel.add(createComponent("Call of Duty"));
-  //  home_panel.add(createComponent("Overcooked"));
-  //  home_panel.add(createComponent("Last of Us"));
-  //  home_panel.add(createComponent("Resident Evil 4"));
 
     JButton search = new JButton();
 
@@ -46,18 +64,35 @@ private void HomeButtons(){
     collections.setForeground(Color.white);
     add(collections);
 
+
+
+
+}
+
+private void AccountButton(){
+
     JButton account_profile = new JButton();
-    Panel p = new Panel();
+
 
 
     account_profile.setBackground(Color.decode("#0071bc"));
     account_profile.setText("SPENCER");
     account_profile.setForeground(Color.white);
-    p.setLayout(new BorderLayout());
-    p.add(account_profile, BorderLayout.EAST);
-    add(p, BorderLayout.EAST);
-    p.setVisible(true);
+    add(account_profile);
 
+
+}
+
+private void GameGrid(){
+
+
+
+    setLayout(new GridLayout(2,2));
+    setBackground(Color.decode("#0071bc"));
+    add(new Button("Call of Duty"));
+    add(new Button("Overcooked"));
+    add(new Button("Last of Us"));
+    add(new Button("Resident Evil 4"));
 
 }
 

@@ -5,7 +5,6 @@ import java.awt.*;
 
 public class HomeLayout {
     private final JFrame layout;
-
     public HomeLayout() {
 
         layout = new JFrame("Home Page");
@@ -16,7 +15,8 @@ public class HomeLayout {
         layout.getContentPane().setBackground(Color.decode("#4d4d4d"));
 
         AddHomePanel();
-
+        AddAccountPanel();
+        AddGameGrid();
 
     }
 
@@ -33,6 +33,26 @@ public class HomeLayout {
         home_panel.setVisible(true);
 
 
+
     }
+
+    public void AddAccountPanel(){
+
+        HomePanel account_panel = new HomePanel(800, 1000);
+        layout.setLayout(new BorderLayout());
+        layout.add(account_panel, BorderLayout.EAST);
+        account_panel.setVisible(true);
+
+    }
+
+    public void AddGameGrid(){
+
+        HomePanel game_grid = new HomePanel(800);
+        layout.setLayout(new GridLayout(2,2));
+        layout.add(game_grid);
+        game_grid.setVisible(true);
+
+    }
+
 
 }
