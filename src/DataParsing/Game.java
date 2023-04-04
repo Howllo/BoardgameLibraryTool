@@ -15,11 +15,10 @@ public class Game {
      * @param rank BGG rank
      * @param id BGG id key
      */
-    public Game(String title, String tnuri, Integer pubyear, Integer rank, String id, Integer minPlayers, Integer maxPlayer) {
+    public Game(String title, String tnuri, Integer pubyear, String id, Integer minPlayers, Integer maxPlayer) {
         this.title = title;
         this.thumbnailUri = tnuri;
         this.publicationYear = pubyear;
-        this.rank = rank;
         this.id = id;
         this.minPlayers = minPlayers;
         this.maxPlayer = maxPlayer;
@@ -29,7 +28,7 @@ public class Game {
      * @return A printable string containing the DataParsing.Game's field values
      */
     public String toString() {
-        return "[" + title + ", "+ publicationYear + ", BGG Rank: " + rank + ", BGG ID: " + id + "]";
+        return "[" + title + ", "+ publicationYear +  ", BGG ID: " + id + "]";
     }
 
     //----------- private attributes of a DataParsing.Game ------------------------------------

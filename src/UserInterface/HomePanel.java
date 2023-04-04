@@ -86,13 +86,20 @@ private void AccountButton(){
 private void GameGrid(){
 
 
-
     setLayout(new GridLayout(2,2));
     setBackground(Color.decode("#0071bc"));
     add(new Button("Call of Duty"));
     add(new Button("Overcooked"));
     add(new Button("Last of Us"));
     add(new Button("Resident Evil 4"));
+
+/*    int top = 50;
+    int left = top;
+    int bottom = 2 * top;
+    int right = left;
+    setBorder(BorderFactory.createEmptyBorder(top, left, bottom, right));*/
+
+
 
 }
 

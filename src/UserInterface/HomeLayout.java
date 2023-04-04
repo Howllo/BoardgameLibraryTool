@@ -10,7 +10,7 @@ public class HomeLayout {
         layout = new JFrame("Home Page");
         layout.setSize(1280, 720);
         layout.setLocationRelativeTo(null);
-        layout.setResizable(false);
+        layout.setResizable(true);
         layout.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         layout.getContentPane().setBackground(Color.decode("#4d4d4d"));
 

@@ -18,7 +18,7 @@ public class GameXMLTester {
 
     public static void main(String[] argv)  {
 
-        String inputFileName = "c:\\temp\\simple1.xml";
+        String inputFileName = "C:\\Users\\sk0166\\IdeaProjects\\BoardgameLibraryTool\\data\\simple1.xml";
 
         /******* UNCOMMENT if you don't wish to use a hardcoded filename to test
         System.out.println("Enter the name of the test input file: ");

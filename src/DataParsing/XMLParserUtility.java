@@ -98,7 +98,7 @@ public class XMLParserUtility {
      */
     private Game parseNextGame(Node xmlGameNode) {
         String bgg_id;
-        Integer bgg_rank=0;
+      //  Integer bgg_rank=0;
         String thumburi ="tbd";
         String title="tbd";
         Integer year = 0;
@@ -106,19 +106,19 @@ public class XMLParserUtility {
         Integer maxPlayer;
         NamedNodeMap attributes = xmlGameNode.getAttributes();  // for this item, get its attributes
         bgg_id = attributes.getNamedItem("id").getNodeValue();
-        try {
-            bgg_rank = Integer.parseInt(attributes.getNamedItem("rank").getNodeValue());
-        } catch (NumberFormatException e) {
-            bgg_rank = 0;  // let's use a default value if the data in the file is bad
-        }
+      //  try {
+      //      bgg_rank = Integer.parseInt(attributes.getNamedItem("rank").getNodeValue());
+      //  } catch (NumberFormatException e) {
+       //     bgg_rank = 0;  // let's use a default value if the data in the file is bad
+      //  }
 
         title = parseTextField(xmlGameNode,"name");
-        thumburi = parseTextField(xmlGameNode, "thumbnail");
+      //  thumburi = parseTextField(xmlGameNode, "thumbnail");
         year = parseIntegerField(xmlGameNode, "yearpublished");
         minPlayer = parseIntegerField(xmlGameNode, "minplayers");
         maxPlayer = parseIntegerField(xmlGameNode, "maxplayers");
 
-        return new Game(title,thumburi, year, bgg_rank, bgg_id, minPlayer, maxPlayer);
+        return new Game(title,thumburi, year, bgg_id, minPlayer, maxPlayer);
     }
 
     /**
