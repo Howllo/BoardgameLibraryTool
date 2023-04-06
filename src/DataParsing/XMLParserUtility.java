@@ -115,7 +115,7 @@ public class XMLParserUtility {
 
         title = parseTextField(xmlGameNode,"name");
         //  thumburi = parseTextField(xmlGameNode, "thumbnail");
-        //  description = parseDescField(xmlGameNode, "description");
+        description = parseDescField(xmlGameNode, "description");
         year = parseIntegerField(xmlGameNode, "yearpublished");
         minPlayer = parseIntegerField(xmlGameNode, "minplayers");
         maxPlayer = parseIntegerField(xmlGameNode, "maxplayers");
@@ -165,8 +165,9 @@ public class XMLParserUtility {
 
             if (field.getNodeName().equals(fieldname)) ;
             {
-                NamedNodeMap desc = field.getAttributes();
-                descText = desc.getNamedItem("description").getNodeValue();
+              //  System.out.println(field.getTextContent()); So when testing this to see what it was actually doing, IT IS WORKING HOWEVER, its not only getting the contents of the description, BUT ALSO OF THE THUMBNAIL AND IMAGE LINKS.
+              //  NamedNodeMap desc = field.getAttributes();
+                descText = field.getTextContent();
 
             }
         }
