@@ -18,13 +18,13 @@ public class GameXMLTester {
 
     public static void main(String[] argv)  {
 
-        String inputFileName = "C:\\Users\\sk0166\\IdeaProjects\\BoardgameLibraryTool\\data\\simple1.xml";
+        String inputFileName = "C:\\Users\\Mars\\IdeaProjects\\BoardgameLibraryTool\\src\\simple1.xml";
 
         /******* UNCOMMENT if you don't wish to use a hardcoded filename to test
-        System.out.println("Enter the name of the test input file: ");
-        Scanner keyboard = new Scanner(System.in);
-        inputFileName = keyboard.next();
-        ************/
+         System.out.println("Enter the name of the test input file: ");
+         Scanner keyboard = new Scanner(System.in);
+         inputFileName = keyboard.next();
+         ************/
 
         try {
             /* This code segment sets up a new DOM parser, and makes sure the current

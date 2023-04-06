@@ -98,7 +98,7 @@ public class XMLParserUtility {
      */
     private Game parseNextGame(Node xmlGameNode) {
         String bgg_id;
-      //  Integer bgg_rank=0;
+        //  Integer bgg_rank=0;
         String thumburi ="tbd";
         String title="tbd";
         String description ="tbd";
@@ -107,15 +107,15 @@ public class XMLParserUtility {
         Integer maxPlayer;
         NamedNodeMap attributes = xmlGameNode.getAttributes();  // for this item, get its attributes
         bgg_id = attributes.getNamedItem("id").getNodeValue();
-      //  try {
-      //      bgg_rank = Integer.parseInt(attributes.getNamedItem("rank").getNodeValue());
-      //  } catch (NumberFormatException e) {
-       //     bgg_rank = 0;  // let's use a default value if the data in the file is bad
-      //  }
+        //  try {
+        //      bgg_rank = Integer.parseInt(attributes.getNamedItem("rank").getNodeValue());
+        //  } catch (NumberFormatException e) {
+        //     bgg_rank = 0;  // let's use a default value if the data in the file is bad
+        //  }
 
         title = parseTextField(xmlGameNode,"name");
-      //  thumburi = parseTextField(xmlGameNode, "thumbnail");
-      //  description = parseDescField(xmlGameNode, "description");
+        //  thumburi = parseTextField(xmlGameNode, "thumbnail");
+        //  description = parseDescField(xmlGameNode, "description");
         year = parseIntegerField(xmlGameNode, "yearpublished");
         minPlayer = parseIntegerField(xmlGameNode, "minplayers");
         maxPlayer = parseIntegerField(xmlGameNode, "maxplayers");
@@ -142,10 +142,10 @@ public class XMLParserUtility {
 
             if (field.getNodeName().equals(fieldname)) {
 
-                    NamedNodeMap attributes = field.getAttributes();
-                    typeText = attributes.getNamedItem("type").getNodeValue();
+                NamedNodeMap attributes = field.getAttributes();
+                typeText = attributes.getNamedItem("type").getNodeValue();
 
-                    if(typeText.equals("primary"))
+                if(typeText.equals("primary"))
                     fieldText = attributes.getNamedItem("value").getNodeValue();
 
             }
