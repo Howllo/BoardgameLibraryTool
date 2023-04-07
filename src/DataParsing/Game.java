@@ -35,21 +35,43 @@ public class Game implements Comparator {
     }
 
     //----------- private attributes of a DataParsing.Game ------------------------------------
-
-    private String  title;           // game title
-    private String  thumbnailUri;    // Link / address of game image thumbnail, not used yet
-
-    private String description;
-    private Integer publicationYear; // date of publication
-    private Integer rank;            // board game geek current rank
-    private String  id;              // board game geek unique game id key
-    private Integer minPlayers;     // min players
-    private Integer maxPlayer;      // max players
+    private final String  title;           // Game title
+    private final String  thumbnailUri;    // Link / address of game image thumbnail, not used yet
+    private final Integer publicationYear; // date of publication
+    private final Integer rank;            // board game geek current rank
+    private final String  id;              // board game geek unique game id key
+    private final Integer minPlayers;     // min players
+    private final Integer maxPlayer;      // max players
+    //TODO: Create a ArrayList of Review objects
 
     public String getGameId(){
         return id;
     }
-    
+
+    public String getThumbnailUrl() {
+        return thumbnailUri;
+    }
+
+    public Integer getPublicationYear() {
+        return publicationYear;
+    }
+
+    public Integer getRank() {
+        return rank;
+    }
+
+    public Integer getMinPlayers() {
+        return minPlayers;
+    }
+
+    public Integer getMaxPlayer() {
+        return maxPlayer;
+    }
+
+    public String getTitle(){
+        return title;
+    }
+
     @Override
     public int compare(Object o1, Object o2) {
         Game gameOne = (Game) o1;

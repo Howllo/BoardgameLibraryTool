@@ -4,6 +4,8 @@ import DataParsing.Game;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
 
 public class GameFilters {
     ArrayList<Game> releaseGameFilter = new ArrayList<>();
@@ -19,19 +21,23 @@ public class GameFilters {
     }
 
     private void CreateReleaseGameFilter(ArrayList<Game> games){
+        releaseGameFilter = (ArrayList<Game>) games.clone();
 
+        games.sort(Comparator.comparing(Game::getPublicationYear));
     }
 
     private void CreateNameGameFilter(ArrayList<Game> games){
+        nameGameFilter = (ArrayList<Game>) games.clone();
 
     }
 
     private void CreateMinPlayerGameFilter(ArrayList<Game> games){
+        minPlayerGameFilter = (ArrayList<Game>) games.clone();
 
     }
 
     private void CreateMaxPlayerGameFilter(ArrayList<Game> games){
-
+        maxPlayerGameFilter = (ArrayList<Game>) games.clone();
     }
 
     public ArrayList<Game> GetReleaseGameFilter(){
