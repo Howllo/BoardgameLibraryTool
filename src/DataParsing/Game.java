@@ -17,11 +17,11 @@ public class Game implements Comparator {
      * @param rank BGG rank
      * @param id BGG id key
      */
-    public Game(String title, String tnuri, Integer pubyear, Integer rank, String id, Integer minPlayers, Integer maxPlayer) {
+    public Game(String title, String tnuri, String description, Integer pubyear, String id, Integer minPlayers, Integer maxPlayer) {
         this.title = title;
         this.thumbnailUri = tnuri;
+        this.description = description;
         this.publicationYear = pubyear;
-        this.rank = rank;
         this.id = id;
         this.minPlayers = minPlayers;
         this.maxPlayer = maxPlayer;
@@ -31,13 +31,15 @@ public class Game implements Comparator {
      * @return A printable string containing the DataParsing.Game's field values
      */
     public String toString() {
-        return "[" + title + ", "+ publicationYear + ", BGG Rank: " + rank + ", BGG ID: " + id + "]";
+        return "[" + title + ", "+ publicationYear +  ", BGG ID: " + id + "," + " Min Players: " + minPlayers + "," +" Max Players: " + maxPlayer + "," + " Description: " + description + "]";
     }
 
     //----------- private attributes of a DataParsing.Game ------------------------------------
 
     private String  title;           // game title
     private String  thumbnailUri;    // Link / address of game image thumbnail, not used yet
+
+    private String description;
     private Integer publicationYear; // date of publication
     private Integer rank;            // board game geek current rank
     private String  id;              // board game geek unique game id key
@@ -47,7 +49,7 @@ public class Game implements Comparator {
     public String getGameId(){
         return id;
     }
-
+    
     @Override
     public int compare(Object o1, Object o2) {
         Game gameOne = (Game) o1;
