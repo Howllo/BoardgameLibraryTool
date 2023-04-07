@@ -30,6 +30,7 @@ public final class Database {
     private String gameDataPath = absPath.replace(gameDataXML, _userDataPath);
     private HashMap<String, Game> gameHash = new HashMap<String, Game>();
     private ArrayList<Game> gameList;
+    private GameFilters gameFilters;
 
     private Database() throws IOException {
         try{
@@ -44,6 +45,9 @@ public final class Database {
         } catch (IOException e2){
             System.out.println("Unable to parse..");
         }
+
+        // Create Game Filter
+        gameFilters = new GameFilters(gameList);
     }
 
     /**
@@ -68,5 +72,13 @@ public final class Database {
      */
     public ArrayList<Game> GetGameList(){
         return gameList;
+    }
+
+    /***
+     * Gets game filter object that hold game filter lists.
+     * @return Returns game filter object.
+     */
+    public GameFilters GetGameFilter(){
+        return gameFilters;
     }
 }
