@@ -98,27 +98,29 @@ public class XMLParserUtility {
      */
     private Game parseNextGame(Node xmlGameNode) {
         String bgg_id;
-        Integer bgg_rank=0;
+        //  Integer bgg_rank=0;
         String thumburi ="tbd";
         String title="tbd";
+        String description ="tbd";
         Integer year = 0;
         Integer minPlayer;
         Integer maxPlayer;
         NamedNodeMap attributes = xmlGameNode.getAttributes();  // for this item, get its attributes
         bgg_id = attributes.getNamedItem("id").getNodeValue();
-        try {
-            bgg_rank = Integer.parseInt(attributes.getNamedItem("rank").getNodeValue());
-        } catch (NumberFormatException e) {
-            bgg_rank = 0;  // let's use a default value if the data in the file is bad
-        }
+        //  try {
+        //      bgg_rank = Integer.parseInt(attributes.getNamedItem("rank").getNodeValue());
+        //  } catch (NumberFormatException e) {
+        //     bgg_rank = 0;  // let's use a default value if the data in the file is bad
+        //  }
 
         title = parseTextField(xmlGameNode,"name");
-        thumburi = parseTextField(xmlGameNode, "thumbnail");
+        //  thumburi = parseTextField(xmlGameNode, "thumbnail");
+        description = parseDescField(xmlGameNode, "description");
         year = parseIntegerField(xmlGameNode, "yearpublished");
         minPlayer = parseIntegerField(xmlGameNode, "minplayers");
         maxPlayer = parseIntegerField(xmlGameNode, "maxplayers");
 
-        return new Game(title,thumburi, year, bgg_rank, bgg_id, minPlayer, maxPlayer);
+        return new Game(title,thumburi, description, year, bgg_id, minPlayer, maxPlayer);
     }
 
     /**
@@ -129,16 +131,51 @@ public class XMLParserUtility {
      * @return a string containing the field value
      */
     private String parseTextField(Node xmlGameNode, String fieldname) {
+
         NodeList fields = xmlGameNode.getChildNodes();
         String fieldText = "unknown";
+        String typeText = "unknown";
+
         for (int i = 0; i < fields.getLength(); i++) {
+
             Node field = fields.item(i);
+
             if (field.getNodeName().equals(fieldname)) {
+
                 NamedNodeMap attributes = field.getAttributes();
-                fieldText = attributes.getNamedItem("value").getNodeValue();
+                typeText = attributes.getNamedItem("type").getNodeValue();
+
+                if(typeText.equals("primary"))
+                    fieldText = attributes.getNamedItem("value").getNodeValue();
+
             }
         }
         return fieldText;
+    }
+
+    private String parseDescField(Node xmlGameNode, String fieldname){
+
+        NodeList fields = xmlGameNode.getChildNodes();
+        String descText = "unknown";
+
+        for(int i = 0; i < fields.getLength(); i++) {
+
+            Node field = fields.item(i);
+
+
+            if (field.getNodeName().equals(fieldname)) ;
+            {
+              //  System.out.println(field.getTextContent()); So when testing this to see what it was actually doing, IT IS WORKING HOWEVER, its not only getting the contents of the description, BUT ALSO OF THE THUMBNAIL AND IMAGE LINKS.
+              //  NamedNodeMap desc = field.getAttributes();
+                descText = field.getTextContent();
+
+            }
+        }
+
+        return descText;
+
+
+
     }
 
     /**
