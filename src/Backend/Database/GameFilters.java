@@ -2,7 +2,6 @@ package Backend.Database;
 
 import DataParsing.Game;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
