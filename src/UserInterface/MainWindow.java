@@ -8,30 +8,24 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class MainWindow {
-    private final JFrame window;
+public class MainWindow extends JFrame {
 
     public MainWindow(){
-        window = new JFrame("Board Game Library");
-        window.setLocationRelativeTo(null);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.getContentPane().setBackground(Color.decode("#4d4d4d"));
-        window.setLayout(null);
+        setTitle("Board Game Library");
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        getContentPane().setBackground(Color.decode("#4d4d4d"));
+        setLayout(null);
         AddEntrancePanel();
     }
-
-    /**
-     * Forces the main window to display to the user.
-     */
-    public void show(){ window.setVisible(true); }
 
     public void AddEntrancePanel(){
         JPanel content = new JPanel(new GridBagLayout());
         content.setBorder(new EmptyBorder(20, 20, 20, 20));
         content.setBackground(Color.decode("#4d4d4d"));
-        window.setContentPane(content);
-        window.add(new EntrancePanel(this));
-        window.setSize(1280, 720);
+        setContentPane(content);
+        add(new EntrancePanel(this));
+        setSize(1280, 720);
     }
 
     /**
@@ -41,17 +35,17 @@ public class MainWindow {
         JPanel content = new JPanel(new GridBagLayout());
         content.setBorder(new EmptyBorder(20,20, 20, 20));
         content.setBackground(Color.decode("#4d4d4d"));
-        window.setContentPane(content);
-        window.add(new LoginPanel(window));
-        window.setSize(1280, 720);
+        setContentPane(content);
+        add(new LoginPanel(this));
+        setSize(1280, 720);
     }
 
     public void AddSignUpPanel(){
         JPanel content = new JPanel(new GridBagLayout());
         content.setBorder(new EmptyBorder(20,20, 20, 20));
         content.setBackground(Color.decode("#4d4d4d"));
-        window.setContentPane(content);
-        window.add(new SignupPanel(window));
-        window.setSize(1280, 720);
+        setContentPane(content);
+        add(new SignupPanel(this));
+        setSize(1280, 720);
     }
 }

@@ -1,5 +1,5 @@
-import DataParsing.Database;
-import UserInterface.HomeLayout;
+import Backend.Database.Database;
+import UserInterface.HomeMenu.HomeLayout;
 
 import javax.swing.*;
 
@@ -10,12 +10,9 @@ public class HomeMenu {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-
-                Database.getInstance();
                 HomeLayout home_Window = new HomeLayout();
                 home_Window.show();
             }
         });
-
     }
 }

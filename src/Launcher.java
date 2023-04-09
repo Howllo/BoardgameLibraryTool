@@ -1,3 +1,4 @@
+import Backend.Database.Database;
 import UserInterface.MainWindow;
 
 import javax.swing.*;
@@ -7,9 +8,9 @@ public class Launcher {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                //Database.getInstance();
+                Database.getInstance();
                 MainWindow mainWindow = new MainWindow();
-                mainWindow.show();
+                mainWindow.setVisible(true);
             }
         });
     }
