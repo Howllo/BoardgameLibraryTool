@@ -1,6 +1,10 @@
 package Backend.Database;
 
 import DataParsing.Game;
+//<<<<<<< parser_update
+//=======
+
+//>>>>>>> master
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -224,6 +228,7 @@ public class GameFilters {
         return smallestToLargestMaxPlayerGameFilter;
     }
 
+//<<<<<<< parser_update
     /**
      * Get an array list of largest to smallest max player filter
      * @return An array list of game object from largest to smallest.
@@ -232,3 +237,7 @@ public class GameFilters {
         return largestToSmallestMaxPlayerGameFilter;
     }
 }
+//=======
+    public ArrayList<Game> GetLargestToSmallestMaxPlayerFilter() { return largestToSmallestMaxPlayerGameFilter; }
+}
+//>>>>>>> master
