@@ -1,4 +1,4 @@
-package UserInterface;
+package UserInterface.HomeMenu;
 
 import javax.swing.*;
 import java.awt.*;

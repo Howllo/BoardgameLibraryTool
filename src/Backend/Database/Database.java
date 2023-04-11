@@ -22,18 +22,18 @@ public final class Database {
     }
 
     // Keeping data relative to the program.
-    private final String gameDataXML = "bgg50Games.xml";
-    private final String _gameDataPath = "data\\game_data\\";
+    private final String gameDataXML = "bgg90Games.xml";
     private final String _userDataPath = "data\\user_data\\";
     private final File gameDataBase = new File(gameDataXML);
-    private String absPath = gameDataBase.getAbsolutePath();
-    private String gameDataPath = absPath.replace(gameDataXML, _userDataPath);
-    private HashMap<String, Game> gameHash = new HashMap<String, Game>();
+    private final String absPath = gameDataBase.getAbsolutePath();
+    private final String gameDataPath = absPath.replace(gameDataXML, _userDataPath);
+    private final HashMap<String, Game> gameHash = new HashMap<String, Game>();
     private ArrayList<Game> gameList;
-    private GameFilters gameFilters;
+    private final GameFilters gameFilters;
 
     private Database() throws IOException {
         try{
+            String _gameDataPath = "data\\game_data\\";
             String path = absPath.replace(gameDataXML, _gameDataPath + gameDataXML);
             XMLParserUtility parser = new XMLParserUtility(path);
             gameList = parser.retrieveGameList();
@@ -51,8 +51,8 @@ public final class Database {
     }
 
     /**
-     * Get the Instance of the singleton
-     * @return Return the Database instance.
+     * Get the Instance of the Database singleton.
+     * @return Return the Database object instance.
      */
     public static Database getInstance(){
         return instance;

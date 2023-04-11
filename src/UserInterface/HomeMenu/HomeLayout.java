@@ -1,4 +1,4 @@
-package UserInterface;
+package UserInterface.HomeMenu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +17,6 @@ public class HomeLayout {
         AddHomePanel();
         AddAccountPanel();
         AddGameGrid();
-
     }
 
     public void show(){
@@ -31,9 +30,6 @@ public class HomeLayout {
         layout.setLayout(new BorderLayout());
         layout.add(home_panel, BorderLayout.WEST);
         home_panel.setVisible(true);
-
-
-
     }
 
     public void AddAccountPanel(){
@@ -42,17 +38,12 @@ public class HomeLayout {
         layout.setLayout(new BorderLayout());
         layout.add(account_panel, BorderLayout.EAST);
         account_panel.setVisible(true);
-
     }
 
     public void AddGameGrid(){
-
         HomePanel game_grid = new HomePanel(800);
         layout.setLayout(new GridLayout(2,2));
         layout.add(game_grid);
         game_grid.setVisible(true);
-
     }
-
-
 }
