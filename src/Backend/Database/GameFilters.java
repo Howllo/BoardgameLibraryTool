@@ -1,6 +1,8 @@
 package Backend.Database;
 
 import DataParsing.Game;
+import UserInterface.HomeMenu.HomePanel;
+
 //<<<<<<< parser_update
 //=======
 
@@ -233,11 +235,11 @@ public class GameFilters {
      * Get an array list of largest to smallest max player filter
      * @return An array list of game object from largest to smallest.
      */
-    public ArrayList<Game> GetLargestToSmallestMaxPlayerFilter(){
-        return largestToSmallestMaxPlayerGameFilter;
-    }
-}
+   // public ArrayList<Game> GetLargestToSmallestMaxPlayerFilter(){
+ //       return largestToSmallestMaxPlayerGameFilter;
+   // }
+//}
 //=======
-    public ArrayList<Game> GetLargestToSmallestMaxPlayerFilter() { return largestToSmallestMaxPlayerGameFilter; }
+   // public ArrayList<Game> GetLargestToSmallestMaxPlayerFilter() { return largestToSmallestMaxPlayerGameFilter; }
 }
 //>>>>>>> master

@@ -1,7 +1,11 @@
 package UserInterface.HomeMenu;
 
+import Backend.Database.GameFilters;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class HomePanel extends JPanel {
 
@@ -24,7 +28,7 @@ public HomePanel(){
         setBackground(Color.decode("#333333"));
 
 
-        AccountButton();
+       // FilterButton();
 
 
     }
@@ -45,6 +49,8 @@ private void HomeButtons(){
 
     JButton search = new JButton();
 
+   // setLayout(new GridLayout(0,3));
+
     search.setBackground(Color.decode("#0071bc"));
     search.setText("SEARCH");
     search.setForeground(Color.white);
@@ -64,7 +70,7 @@ private void HomeButtons(){
     collections.setForeground(Color.white);
     add(collections);
 
-
+    AccountButton();
 
 
 }
@@ -83,21 +89,69 @@ private void AccountButton(){
 
 }
 
+/*private void FilterButton(){
+
+    JButton name_filter = new JButton();
+
+    // setLayout(new GridLayout(0,3));
+
+    name_filter.setBackground(Color.decode("#0071bc"));
+    name_filter.setText("TITLE");
+    name_filter.setForeground(Color.white);
+    add(name_filter);
+
+    int top = 200;
+    int left = top;
+    int bottom = 2 * top;
+    int right = left;
+    setBorder(BorderFactory.createEmptyBorder(top, left, bottom, right));
+
+}*/
+
 private void GameGrid(){
 
+    JButton name_filter = new JButton();
 
-    setLayout(new GridLayout(2,2));
+    // setLayout(new GridLayout(0,3));
+
+    name_filter.setBackground(Color.decode("#0071bc"));
+    name_filter.setText("TITLE");
+    name_filter.setForeground(Color.red);
+    name_filter.setFocusPainted(false);
+
+    name_filter.addActionListener(new ActionListener() {
+
+        @Override
+        public void actionPerformed(ActionEvent e){
+
+
+        }
+
+
+    });
+
+    add(name_filter);
+
+    int top = 200;
+    int left = top;
+    int bottom = 2 * top;
+    int right = left;
+    setBorder(BorderFactory.createEmptyBorder(top, left, bottom, right));
+
+    setLayout(new GridLayout(0,1));
     setBackground(Color.decode("#0071bc"));
     add(new Button("Call of Duty"));
     add(new Button("Overcooked"));
     add(new Button("Last of Us"));
     add(new Button("Resident Evil 4"));
 
-/*    int top = 50;
-    int left = top;
-    int bottom = 2 * top;
-    int right = left;
-    setBorder(BorderFactory.createEmptyBorder(top, left, bottom, right));*/
+    top = 25;
+    left = top;
+    bottom = 2 * top;
+    right = left;
+    setBorder(BorderFactory.createEmptyBorder(top, left, bottom, right));
+
+
 
 
 
