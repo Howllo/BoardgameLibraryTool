@@ -1,11 +1,13 @@
 package UserInterface.HomeMenu;
 
 import Backend.Database.GameFilters;
+import DataParsing.Game;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class HomePanel extends JPanel {
 
@@ -111,6 +113,7 @@ private void AccountButton(){
 private void GameGrid(){
 
     JButton name_filter = new JButton();
+    ArrayList<JButton> game = new ArrayList<>();
 
     // setLayout(new GridLayout(0,3));
 
@@ -118,17 +121,6 @@ private void GameGrid(){
     name_filter.setText("TITLE");
     name_filter.setForeground(Color.red);
     name_filter.setFocusPainted(false);
-
-    name_filter.addActionListener(new ActionListener() {
-
-        @Override
-        public void actionPerformed(ActionEvent e){
-
-
-        }
-
-
-    });
 
     add(name_filter);
 
@@ -141,8 +133,8 @@ private void GameGrid(){
     setLayout(new GridLayout(0,1));
     setBackground(Color.decode("#0071bc"));
     add(new Button("Call of Duty"));
-    add(new Button("Overcooked"));
     add(new Button("Last of Us"));
+    add(new Button("Overcooked"));
     add(new Button("Resident Evil 4"));
 
     top = 25;
@@ -151,7 +143,17 @@ private void GameGrid(){
     right = left;
     setBorder(BorderFactory.createEmptyBorder(top, left, bottom, right));
 
+    name_filter.addActionListener(new ActionListener() {
 
+        @Override
+        public void actionPerformed(ActionEvent e){
+            name_filter.setText("TEST");
+
+
+        }
+
+
+    });
 
 
 
