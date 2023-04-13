@@ -1,12 +1,23 @@
 package Backend.User;
 
+import Backend.Database.Database;
+
 import java.io.Serializable;
 
 public class Review implements Serializable {
-    private Integer playerID;
-    private Integer playerScore;
-    private String playerText;
-    private Integer gameID;
+    private Integer playerID = 0;
+    private Integer playerScore = 0;
+    private String playerText = "";
+    private String gameID = "";
+    private String gameTitle = "";
+
+    Review(Integer playerID, Integer playerScore, String reviewText, String gameID){
+        this.playerID = playerID;
+        this.playerScore = playerScore;
+        this.playerText = reviewText;
+        this.gameID = gameID;
+        this.gameTitle = Database.getInstance().GetGameFromHash(this.gameID).getTitle();
+    }
 
     /**
      * Set the player score make sure it is within the 0-10 scale.
@@ -27,7 +38,7 @@ public class Review implements Serializable {
      * Get the player score from the object.
      * @return an int of the player score.
      */
-    private Integer getPlayerScore(){
+    public Integer getPlayerScore(){
         return playerScore;
     }
 
@@ -67,7 +78,7 @@ public class Review implements Serializable {
      * Set the game id of the review object.
      * @param gameID Takes in Integer object to set the game id.
      */
-    public void setGameID(Integer gameID){
+    public void setGameID(String  gameID){
         this.gameID = gameID;
     }
 
@@ -75,7 +86,15 @@ public class Review implements Serializable {
      * Get the game id of the review object.
      * @return an Integer object of the game id.
      */
-    public Integer getGameID(){
+    public String  getGameID(){
         return gameID;
+    }
+
+    /**
+     * Get the game title of the object.
+     * @return an String of the title.
+     */
+    public String getTitle(){
+        return gameTitle;
     }
 }

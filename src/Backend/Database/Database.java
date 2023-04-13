@@ -64,8 +64,8 @@ public final class Database {
      * Get the GameHash of the database.
      * @return Returns the of Hashmap[Game ID String, Game].
      */
-    public HashMap<String, Game> GetGameHash(){
-        return gameHash;
+    public Game GetGameFromHash(String gameID){
+        return gameHash.get(gameID);
     }
 
     /**
@@ -90,5 +90,9 @@ public final class Database {
      */
     public void setUserData(UserData userData){
         this.userData = userData;
+    }
+
+    public String getGameDataPath(){
+        return gameDataPath;
     }
 }
