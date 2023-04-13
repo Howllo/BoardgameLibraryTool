@@ -1,5 +1,6 @@
 package Backend.Database;
 
+import Backend.User.UserData;
 import DataParsing.Game;
 import DataParsing.XMLParserUtility;
 
@@ -30,6 +31,7 @@ public final class Database {
     private final HashMap<String, Game> gameHash = new HashMap<String, Game>();
     private ArrayList<Game> gameList;
     private final GameFilters gameFilters;
+    private UserData userData;
 
     private Database() throws IOException {
         try{
@@ -80,5 +82,13 @@ public final class Database {
      */
     public GameFilters GetGameFilter(){
         return gameFilters;
+    }
+
+    /**
+     * Used to set the user data to be saved.
+     * @param userData Takes in an user data object at start to be set.
+     */
+    public void setUserData(UserData userData){
+        this.userData = userData;
     }
 }

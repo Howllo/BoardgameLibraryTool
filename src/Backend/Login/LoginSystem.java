@@ -25,7 +25,10 @@ public class LoginSystem {
 
     public static void CreateNewUserData(String username, char[] password, LoginPanel loginPanel){
         Database database = Database.getInstance();
+        Error(username, password, loginPanel);
+    }
 
+    private static void Error(String username, char[] password, LoginPanel loginPanel){
         if(username.length() <= 3){
             loginPanel.GetUserNameLabel().setBorder(BorderFactory.createLineBorder(Color.red));
             return;
