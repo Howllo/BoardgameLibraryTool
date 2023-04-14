@@ -112,8 +112,18 @@ private void AccountButton(){
 
 private void GameGrid(){
 
-    JButton name_filter = new JButton();
-    ArrayList<JButton> game = new ArrayList<>();
+
+    String[] columns = {"Title", "Release Date"};
+    Object[][] games = {{"Call of Duty", "2021"}, {"Resident Evil 4", "2005"}, {"Last of Us", "2013"}, {"Overcooked", "2016"}};
+    JTable game_table = new JTable(games, columns);
+    JScrollPane scroll = new JScrollPane(game_table);
+    game_table.setAutoCreateRowSorter(true);
+    add(scroll, BorderLayout.WEST);
+    setVisible(true);
+
+
+  /*  JButton name_filter = new JButton();
+  //  ArrayList<JButton> game = new ArrayList<>();
 
     // setLayout(new GridLayout(0,3));
 
@@ -153,7 +163,7 @@ private void GameGrid(){
         }
 
 
-    });
+    });*/
 
 
 
