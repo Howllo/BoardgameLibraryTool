@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<user user-type="1">
+    <username>admin</username>
+    <userID>1</userID>
+    <password>rootuser</password>
+    <review type="374173">
+        <playerID>1</playerID>
+        <reviewScore>10</reviewScore>
+        <reviewText>Star Wars is a fun game!</reviewText>
+        <reviewGameID>374173</reviewGameID>
+        <gameTitle>Star Wars: The Deckbuilding Game</gameTitle>
+    </review>
+    <review type="381626">
+        <playerID>1</playerID>
+        <reviewScore>5</reviewScore>
+        <reviewText>Call of Duty is a boring game.</reviewText>
+        <reviewGameID>381626</reviewGameID>
+        <gameTitle>CATAN: Soccer Fever Scenario</gameTitle>
+    </review>
+</user>

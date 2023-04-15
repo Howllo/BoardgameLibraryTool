@@ -3,6 +3,7 @@ package UserInterface.LoginSystem;
 import Backend.Login.LoginSystem;
 import UserInterface.DimensionCompare;
 import UserInterface.JTextButton;
+import UserInterface.MainWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,17 +26,17 @@ public class SignupPanel extends JPanel {
     public final String colorText = "#676767";
 
     // Remember Me
-    JCheckBox rememberMeLogin = new JCheckBox("Remember Me");
+    private final JCheckBox rememberMeLogin = new JCheckBox("Remember Me");
 
     // Forgot Password
-    JTextButton forgotButton = new JTextButton("Forgot Password");
+    private final JTextButton forgotButton = new JTextButton("Forgot Password");
 
     // Log in Button
-    JButton loginButton = new JButton();
+    private final JButton loginButton = new JButton();
 
-    JFrame parentFrame;
+    private final MainWindow parentFrame;
 
-    public SignupPanel(JFrame parent){
+    public SignupPanel(MainWindow parent){
         OriginalDimension = new Dimension(getSize().width, getSize().height);
         parentFrame = parent;
         setMaximumSize(getMinimumSize());
@@ -161,14 +162,14 @@ public class SignupPanel extends JPanel {
     private void CreateButton(){
         JPanel panel = new JPanel(new BorderLayout());
         loginButton.setBackground(Color.decode("#0071bc"));
-        loginButton.setText("SIGN IN");
+        loginButton.setText("SIGN UP");
         loginButton.setForeground(Color.white);
         loginButton.setFocusPainted(false);
 
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                LoginSystem.createNewUserData(usernameField.getText(), passwordField.getPassword(), SignupPanel.this);
             }
         });
         panel.add(loginButton, BorderLayout.SOUTH);
@@ -232,19 +233,23 @@ public class SignupPanel extends JPanel {
         super.paint(g);
     }
 
-    public JLabel GetUserNameLabel(){
+    public JLabel getUserNameLabel(){
         return userNameLabel;
     }
 
-    public JLabel GetPasswordLabel(){
+    public JLabel getPasswordLabel(){
         return passwordLabel;
     }
 
-    public JTextField GetUserNameTextField(){
+    public JTextField getUserNameTextField(){
         return usernameField;
     }
 
-    public JTextField GetPasswordTextField(){
+    public JTextField getPasswordTextField(){
         return passwordField;
+    }
+
+    public MainWindow getMainWindow(){
+        return parentFrame;
     }
 }

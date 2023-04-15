@@ -1,9 +1,13 @@
 package Backend.Database;
 
+import Backend.User.Review;
 import Backend.User.UserData;
 import DataParsing.Game;
+import DataParsing.UserDataParser;
 import DataParsing.XMLParserUtility;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -22,18 +26,23 @@ public final class Database {
         }
     }
 
-    // Keeping data relative to the program.
+    //region Data Director Pathing
     private final String gameDataXML = "bgg90Games.xml";
     private final String _userDataPath = "data\\user_data\\";
     private final File gameDataBase = new File(gameDataXML);
     private final String absPath = gameDataBase.getAbsolutePath();
     private final String gameDataPath = absPath.replace(gameDataXML, _userDataPath);
     private final HashMap<String, Game> gameHash = new HashMap<String, Game>();
+    //endregion
+
     private ArrayList<Game> gameList;
     private final GameFilters gameFilters;
     private UserData userData;
+    private UserDataParser userDataParser;
 
     private Database() throws IOException {
+
+        // Create XML Parser Utility
         try{
             String _gameDataPath = "data\\game_data\\";
             String path = absPath.replace(gameDataXML, _gameDataPath + gameDataXML);
@@ -85,14 +94,78 @@ public final class Database {
     }
 
     /**
-     * Used to set the user data to be saved.
-     * @param userData Takes in an user data object at start to be set.
+     * Create a new user for the current file.
+     * @param username Takes in a string username.
+     * @param password Takes in a character array for password.
      */
-    public void setUserData(UserData userData){
-        this.userData = userData;
+    public boolean createNewUserData(String username, char[] password){
+        UserData newUser = new UserData(username, password, -1, new ArrayList<>());
+
+        // Create User Data Parser
+        try{
+            userDataParser = new UserDataParser(gameDataPath + username + ".xml");
+        } catch (FileNotFoundException e){
+            System.out.println("User Data Parser File Error: " + e.getMessage());
+        } catch (IOException e){
+            System.out.println("User Data Parser IO Error: " + e.getMessage());
+        }
+
+        try{
+            userData = newUser;
+            return userDataParser.createUserXML(newUser);
+        } catch (ParserConfigurationException e){
+            System.out.println("Error creating new user XML: " + e.getMessage());
+            return false;
+        } catch (TransformerException e) {
+            System.out.println("Transformer error: " + e.getMessage());
+            return false;
+        } catch (FileNotFoundException fnfe){
+            System.out.println("File not found: " + fnfe.getMessage());
+            return false;
+        }
     }
 
+    /**
+     * Load user and set the userdata object.
+     * @param username Takes in username to search through directory to return userdata object.
+     */
+    public UserData setUserData(String username, char[] password){
+        // Create User Data Parser
+        try{
+            if(userDataParser == null)
+                userDataParser = new UserDataParser(gameDataPath + username + ".xml");
+        } catch (FileNotFoundException e){
+            System.out.println("User Data Parser File Error: " + e.getMessage());
+        } catch (IOException e){
+            System.out.println("User Data Parser IO Error: " + e.getMessage());
+        }
+
+        if(userDataParser != null){
+            userData = userDataParser.getUser(username, password);
+        }
+        return userData;
+    }
+
+    /**
+     * Get the data path for user data.
+     * @return a string of the game data path.
+     */
     public String getGameDataPath(){
         return gameDataPath;
+    }
+
+    /**
+     * Save the user data to a XML file.
+     */
+    public void SaveUserData(){
+        try{
+            userDataParser.createUserXML(userData);
+        } catch (ParserConfigurationException e){
+            System.out.println("Creating User XML Error: " + e.getMessage());
+        } catch (TransformerException e) {
+            System.out.println("Transformer error: " + e.getMessage());
+        } catch (FileNotFoundException fnfe){
+            System.out.println("File not found: " + fnfe.getMessage());
+        }
     }
 }

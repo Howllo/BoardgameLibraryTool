@@ -11,9 +11,9 @@ public class Review implements Serializable {
     private String gameID = "";
     private String gameTitle = "";
 
-    Review(Integer playerID, Integer playerScore, String reviewText, String gameID){
+    public Review(Integer playerID, Integer playerScore, String reviewText, String gameID){
         this.playerID = playerID;
-        this.playerScore = playerScore;
+        setScore(playerScore);
         this.playerText = reviewText;
         this.gameID = gameID;
         this.gameTitle = Database.getInstance().GetGameFromHash(this.gameID).getTitle();

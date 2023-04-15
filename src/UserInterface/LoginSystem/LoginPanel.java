@@ -3,6 +3,7 @@ package UserInterface.LoginSystem;
 import Backend.Login.LoginSystem;
 import UserInterface.DimensionCompare;
 import UserInterface.JTextButton;
+import UserInterface.MainWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,9 +31,9 @@ public class LoginPanel extends JPanel {
     // Log in Button
     JButton loginButton = new JButton();
 
-    JFrame parentFrame;
+    MainWindow parentFrame;
 
-    public LoginPanel(JFrame parent){
+    public LoginPanel(MainWindow parent){
         OriginalDimension = new Dimension(getSize().width, getSize().height);
         parentFrame = parent;
         setMaximumSize(getMinimumSize());
@@ -165,7 +166,7 @@ public class LoginPanel extends JPanel {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                LoginSystem.LoadUserData(usernameField.getText(), passwordField.getPassword(), LoginPanel.this);
+                LoginSystem.loadUserData(usernameField.getText(), passwordField.getPassword(), LoginPanel.this);
             }
         });
         panel.add(loginButton, BorderLayout.SOUTH);
@@ -244,4 +245,6 @@ public class LoginPanel extends JPanel {
     public JTextField GetPasswordTextField(){
         return passwordField;
     }
+
+    public MainWindow getParentFrame() { return parentFrame; }
 }
