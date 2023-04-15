@@ -3,6 +3,7 @@ package UserInterface;
 import UserInterface.LoginSystem.EntrancePanel;
 import UserInterface.LoginSystem.LoginPanel;
 import UserInterface.LoginSystem.SignupPanel;
+import UserInterface.HomeMenu.HomeLayout;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -48,4 +49,17 @@ public class MainWindow extends JFrame {
         add(new SignupPanel(this));
         setSize(1280, 720);
     }
+
+    public void AddHomeMenuPanel(){
+
+        JPanel content = new JPanel(new GridBagLayout());
+        content.setBorder(new EmptyBorder(20,20, 20, 20));
+        content.setBackground(Color.decode("#4d4d4d"));
+        setContentPane(content);
+        add(new HomeLayout(this));
+        setSize(1280, 720);
+
+
+    }
+
 }
