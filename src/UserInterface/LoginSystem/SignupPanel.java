@@ -58,6 +58,9 @@ public class SignupPanel extends JPanel {
         CreateButton();
     }
 
+    /**
+     * Create the text field for username and password.
+     */
     private void CreateTextField(){
         JPanel userNameHolder = new JPanel(new GridLayout(2, 9));
         JPanel passwordHolder = new JPanel(new GridLayout(2, 9));
@@ -132,6 +135,9 @@ public class SignupPanel extends JPanel {
         });
     }
 
+    /**
+     * Create remember me login, and forgot password.
+     */
     private void CreateSecondRow(){
         JPanel secondPanel = new JPanel(new GridLayout(1, 50));
 
@@ -159,6 +165,9 @@ public class SignupPanel extends JPanel {
         add(secondPanel, BorderLayout.PAGE_END);
     }
 
+    /**
+     * Create a signup button.
+     */
     private void CreateButton(){
         JPanel panel = new JPanel(new BorderLayout());
         loginButton.setBackground(Color.decode("#0071bc"));
@@ -191,6 +200,10 @@ public class SignupPanel extends JPanel {
         return resizePanel();
     }
 
+    /**
+     * Automatically resize the panel.
+     * @return dimension object of new size.
+     */
     private Dimension resizePanel(){
         final double reduceSizeValue = 0.25;
 
@@ -233,22 +246,42 @@ public class SignupPanel extends JPanel {
         super.paint(g);
     }
 
+    /**
+     * Get user name label.
+     * @return a JLabel of type username.
+     */
     public JLabel getUserNameLabel(){
         return userNameLabel;
     }
 
+    /**
+     * Get the password JLabel.
+     * @return a JLabel of type password.
+     */
     public JLabel getPasswordLabel(){
         return passwordLabel;
     }
 
+    /**
+     * Get the username text field.
+     * @return a JTextField of type username.
+     */
     public JTextField getUserNameTextField(){
         return usernameField;
     }
 
+    /**
+     * Get the password of text field.
+     * @return a JTextField of type password.
+     */
     public JTextField getPasswordTextField(){
         return passwordField;
     }
 
+    /**
+     * Get the main window object which extends JFrame.
+     * @return a main window object.
+     */
     public MainWindow getMainWindow(){
         return parentFrame;
     }
