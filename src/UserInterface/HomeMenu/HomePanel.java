@@ -1,8 +1,10 @@
 package UserInterface.HomeMenu;
 
 import Backend.Database.GameFilters;
+import Backend.Database.Database;
 import DataParsing.Game;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,19 +13,21 @@ import java.util.ArrayList;
 public class HomePanel extends JPanel {
     JPanel home_panel = new JPanel();
 
-public HomePanel(){
 
-    setSize(1166, 1000);
-    setBackground(Color.decode("#333333"));
 
-    HomeButtons();
-}
+    public HomePanel(){
+
+        setSize(1166, 1000);
+        setBackground(Color.decode("#333333"));
+
+        HomeButtons();
+    }
 
     public HomePanel(int s, int a){
 
         setSize(s, a);
         setBackground(Color.decode("#333333"));
-       // FilterButton();
+        // FilterButton();
     }
 
     public HomePanel(int w){
@@ -34,43 +38,47 @@ public HomePanel(){
     }
 
 
-private void HomeButtons(){
+    private void HomeButtons(){
 
-    JButton search = new JButton();
-
-   // setLayout(new GridLayout(0,3));
-
-    search.setBackground(Color.decode("#0071bc"));
-    search.setText("SEARCH");
-    search.setForeground(Color.white);
-    add(search);
-
-    JButton library = new JButton();
-
-    library.setBackground(Color.decode("#0071bc"));
-    library.setText("LIBRARY");
-    library.setForeground(Color.white);
-    add(library);
-
-    JButton collections = new JButton();
-
-    collections.setBackground(Color.decode("#0071bc"));
-    collections.setText("COLLECTIONS");
-    collections.setForeground(Color.white);
-    add(collections);
-
-    AccountButton();
+        JButton search = new JButton();
 
 
-}
+      setLayout(new GridLayout(0, 4));
+      setLocation(500, 500);
 
-private void AccountButton(){
-    JButton account_profile = new JButton();
-    account_profile.setBackground(Color.decode("#0071bc"));
-    account_profile.setText("SPENCER");
-    account_profile.setForeground(Color.white);
-    add(account_profile);
-}
+        search.setBackground(Color.decode("#0071bc"));
+        search.setText("SEARCH");
+        search.setForeground(Color.white);
+        add(search);
+        JButton library = new JButton();
+
+        library.setBackground(Color.decode("#0071bc"));
+        library.setText("LIBRARY");
+        library.setForeground(Color.white);
+        add(library);
+
+        JButton collections = new JButton();
+
+        collections.setBackground(Color.decode("#0071bc"));
+        collections.setText("COLLECTIONS");
+        collections.setForeground(Color.white);
+        add(collections);
+
+
+
+        AccountButton();
+
+
+    }
+
+    private void AccountButton(){
+        JButton account_profile = new JButton();
+        account_profile.setBackground(Color.decode("#0071bc"));
+        account_profile.setText("SPENCER");
+        account_profile.setForeground(Color.white);
+        add(account_profile);
+        setBorder(new EmptyBorder(250,50, 250, 50));
+    }
 
 /*private void FilterButton(){
 
@@ -91,16 +99,19 @@ private void AccountButton(){
 
 }*/
 
-private void GameGrid(){
+    private void GameGrid(){
 
 
-    String[] columns = {"Title", "Release Date"};
-    Object[][] games = {{"Call of Duty", "2021"}, {"Resident Evil 4", "2005"}, {"Last of Us", "2013"}, {"Overcooked", "2016"}};
-    JTable game_table = new JTable(games, columns);
-    JScrollPane scroll = new JScrollPane(game_table);
-    game_table.setAutoCreateRowSorter(true);
-    add(scroll, BorderLayout.WEST);
-    setVisible(true);
+        String[] columns = {"Title", "Release Date"};
+        Object[][] games = {{"Call of Duty", "2021"}, {"Resident Evil 4", "2005"}, {"Last of Us", "2013"}, {"Overcooked", "2016"}};
+        JTable game_table = new JTable(games, columns);
+        JScrollPane scroll = new JScrollPane(game_table);
+        game_table.setForeground(Color.white);
+        game_table.setBackground(Color.black);
+        game_table.setAutoCreateRowSorter(true);
+        add(scroll, BorderLayout.SOUTH);
+        setBorder(new EmptyBorder(100,20, 100, 20));
+        setVisible(true);
 
 
   /*  JButton name_filter = new JButton();
@@ -148,7 +159,7 @@ private void GameGrid(){
 
 
 
-}
+    }
 
     private static JComponent createComponent(String s) {
         JLabel l = new JLabel(s);
@@ -159,4 +170,3 @@ private void GameGrid(){
     }
 
 }
-
