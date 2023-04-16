@@ -10,8 +10,8 @@ public class HomeMenu {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                HomeLayout home_Window = new HomeLayout();
-                home_Window.show();
+              //  HomeLayout home_Window = new HomeLayout();
+               // home_Window.show();
             }
         });
     }
