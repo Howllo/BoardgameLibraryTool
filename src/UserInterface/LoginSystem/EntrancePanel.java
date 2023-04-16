@@ -36,6 +36,9 @@ public class EntrancePanel extends JPanel {
         CreateGuessLoginButton();
     }
 
+    /**
+     * Create the signup button to take be used to create new accounts.
+     */
     public void CreateSignupButton(){
         JPanel panel = new JPanel(new BorderLayout());
         signUpButton.setBackground(Color.decode("#0071bc"));
@@ -63,6 +66,9 @@ public class EntrancePanel extends JPanel {
         });
     }
 
+    /**
+     * Used to log in to user accounts.
+     */
     public void CreateLoginButton(){
         JPanel panel = new JPanel(new BorderLayout());
         loginButton.setBackground(Color.decode("#0071bc"));
@@ -92,6 +98,9 @@ public class EntrancePanel extends JPanel {
         });
     }
 
+    /**
+     * Create button to be used to for accessing guess account.
+     */
     public void CreateGuessLoginButton(){
         JPanel panel = new JPanel(new BorderLayout());
         guessLogin.setBackground(Color.decode("#0071bc"));
@@ -114,8 +123,8 @@ public class EntrancePanel extends JPanel {
         guessLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO: Add home menu].
-                System.out.println("Go to home menu.");
+                setVisible(false);
+                mainWindow.addHomeMenu();
             }
         });
     }

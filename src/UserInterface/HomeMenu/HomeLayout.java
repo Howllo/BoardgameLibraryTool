@@ -23,7 +23,6 @@ public class HomeLayout {
         layout.setVisible(true);
     }
 
-
     public void AddHomePanel(){
 
         HomePanel home_panel = new HomePanel();

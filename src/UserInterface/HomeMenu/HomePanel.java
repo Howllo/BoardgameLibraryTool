@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class HomePanel extends JPanel {
-
     JPanel home_panel = new JPanel();
 
 public HomePanel(){
