@@ -31,6 +31,7 @@ public class EntrancePanel extends JPanel {
         setBackground(Color.decode("#333333"));
         setLocation(375, 75);
 
+        // Create
         CreateSignupButton();
         CreateLoginButton();
         CreateGuessLoginButton();

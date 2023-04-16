@@ -17,6 +17,7 @@ public class MainWindow extends JFrame {
         getContentPane().setBackground(Color.decode("#4d4d4d"));
         setLayout(null);
         AddEntrancePanel();
+        setResizable(false);
     }
 
     /**
@@ -65,8 +66,6 @@ public class MainWindow extends JFrame {
         content.setBorder(new EmptyBorder(20,20, 20, 20));
         content.setBackground(Color.decode("#4d4d4d"));
         setContentPane(content);
-        add(new HomeLayout(this));
-        setSize(1280, 720);
         add(home_Window);
         setSize(1280, 720);
     }

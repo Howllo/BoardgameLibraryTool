@@ -1,6 +1,6 @@
 package UserInterface.HomeMenu;
 
-import Backend.Database.GameFilters;
+import Backend.Database.Database;
 import DataParsing.Game;
 import javax.swing.*;
 import java.awt.*;
@@ -11,26 +11,21 @@ import java.util.ArrayList;
 public class HomePanel extends JPanel {
     JPanel home_panel = new JPanel();
 
-public HomePanel(){
-
-    setSize(1166, 1000);
-    setBackground(Color.decode("#333333"));
-
-    HomeButtons();
+    public HomePanel(){
+        setSize(1166, 1000);
+        setBackground(Color.decode("#333333"));
+        HomeButtons();
 }
-
     public HomePanel(int s, int a){
-
         setSize(s, a);
         setBackground(Color.decode("#333333"));
        // FilterButton();
     }
 
     public HomePanel(int w){
-
         setSize(w, 300);
         setBackground(Color.decode("#333333"));
-        GameGrid();
+        GameGrid(Database.getInstance().GetGameFilter().GetZToANameFilter());
     }
 
 
@@ -58,10 +53,7 @@ private void HomeButtons(){
     collections.setText("COLLECTIONS");
     collections.setForeground(Color.white);
     add(collections);
-
     AccountButton();
-
-
 }
 
 private void AccountButton(){
@@ -91,15 +83,10 @@ private void AccountButton(){
 
 }*/
 
-private void GameGrid(){
-
-
-    String[] columns = {"Title", "Release Date"};
-    Object[][] games = {{"Call of Duty", "2021"}, {"Resident Evil 4", "2005"}, {"Last of Us", "2013"}, {"Overcooked", "2016"}};
-    JTable game_table = new JTable(games, columns);
-    JScrollPane scroll = new JScrollPane(game_table);
-    game_table.setAutoCreateRowSorter(true);
-    add(scroll, BorderLayout.WEST);
+private void GameGrid(ArrayList<Game> inList){
+    GameFilterUI filterUI = new GameFilterUI(inList);
+    add(filterUI, BorderLayout.WEST);
+    filterUI.setVisible(true);
     setVisible(true);
 
 
@@ -135,19 +122,11 @@ private void GameGrid(){
     setBorder(BorderFactory.createEmptyBorder(top, left, bottom, right));
 
     name_filter.addActionListener(new ActionListener() {
-
         @Override
         public void actionPerformed(ActionEvent e){
             name_filter.setText("TEST");
-
-
         }
-
-
     });*/
-
-
-
 }
 
     private static JComponent createComponent(String s) {
@@ -157,6 +136,4 @@ private void GameGrid(){
         l.setHorizontalAlignment(JLabel.CENTER);
         return l;
     }
-
 }
-

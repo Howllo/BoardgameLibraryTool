@@ -1,7 +1,5 @@
 package DataParsing;
 
-import java.util.Comparator;
-
 /**
  * Represents a single DataParsing.Game with data from BoardGameGeek.com
  * This is a very primitive game class, used to illustrate how to gather
@@ -42,27 +40,59 @@ public class Game {
     private final String description;
     //TODO: Create a ArrayList of Review objects
 
+    /**
+     * Get Game ID.
+     * @return String object of the game id.
+     */
     public String getGameId(){
         return id;
     }
 
+    /**
+     * Get the thumbnail url.
+     * @return String object of the game thumbnail url.
+     */
     public String getThumbnailUrl() {
         return thumbnailUri;
     }
 
+    /**
+     * Get the release year of the board game.
+     * @return Integer of the publication year.
+     */
     public Integer getPublicationYear() {
         return publicationYear;
     }
 
+    /**
+     * Get the minimum players for the game.
+     * @return Integer of the minimum player for the game.
+     */
     public Integer getMinPlayers() {
         return minPlayers;
     }
 
+    /**
+     * Get the max player for the game.
+     * @return Integer of the max player for the game.
+     */
     public Integer getMaxPlayer() {
         return maxPlayer;
     }
 
+    /**
+     * Get the title of the game.
+     * @return String object of the title.
+     */
     public String getTitle(){
         return title;
+    }
+
+    /**
+     * Get the description of the game.
+     * @return String object of the description from the game.
+     */
+    public String getDescription(){
+        return description;
     }
 }
