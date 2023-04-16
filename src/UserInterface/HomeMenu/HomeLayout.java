@@ -25,7 +25,6 @@ public class HomeLayout extends JPanel {
         parentFrame.setVisible(true);
     }
 
-
     public void AddHomePanel(){
 
         HomePanel home_panel = new HomePanel();

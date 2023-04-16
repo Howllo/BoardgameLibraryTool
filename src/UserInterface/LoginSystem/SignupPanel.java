@@ -3,6 +3,7 @@ package UserInterface.LoginSystem;
 import Backend.Login.LoginSystem;
 import UserInterface.DimensionCompare;
 import UserInterface.JTextButton;
+import UserInterface.MainWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,17 +26,17 @@ public class SignupPanel extends JPanel {
     public final String colorText = "#676767";
 
     // Remember Me
-    JCheckBox rememberMeLogin = new JCheckBox("Remember Me");
+    private final JCheckBox rememberMeLogin = new JCheckBox("Remember Me");
 
     // Forgot Password
-    JTextButton forgotButton = new JTextButton("Forgot Password");
+    private final JTextButton forgotButton = new JTextButton("Forgot Password");
 
     // Log in Button
-    JButton loginButton = new JButton();
+    private final JButton loginButton = new JButton();
 
-    JFrame parentFrame;
+    private final MainWindow parentFrame;
 
-    public SignupPanel(JFrame parent){
+    public SignupPanel(MainWindow parent){
         OriginalDimension = new Dimension(getSize().width, getSize().height);
         parentFrame = parent;
         setMaximumSize(getMinimumSize());
@@ -57,6 +58,9 @@ public class SignupPanel extends JPanel {
         CreateButton();
     }
 
+    /**
+     * Create the text field for username and password.
+     */
     private void CreateTextField(){
         JPanel userNameHolder = new JPanel(new GridLayout(2, 9));
         JPanel passwordHolder = new JPanel(new GridLayout(2, 9));
@@ -131,6 +135,9 @@ public class SignupPanel extends JPanel {
         });
     }
 
+    /**
+     * Create remember me login, and forgot password.
+     */
     private void CreateSecondRow(){
         JPanel secondPanel = new JPanel(new GridLayout(1, 50));
 
@@ -158,17 +165,20 @@ public class SignupPanel extends JPanel {
         add(secondPanel, BorderLayout.PAGE_END);
     }
 
+    /**
+     * Create a signup button.
+     */
     private void CreateButton(){
         JPanel panel = new JPanel(new BorderLayout());
         loginButton.setBackground(Color.decode("#0071bc"));
-        loginButton.setText("SIGN IN");
+        loginButton.setText("SIGN UP");
         loginButton.setForeground(Color.white);
         loginButton.setFocusPainted(false);
 
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                LoginSystem.createNewUserData(usernameField.getText(), passwordField.getPassword(), SignupPanel.this);
             }
         });
         panel.add(loginButton, BorderLayout.SOUTH);
@@ -190,6 +200,10 @@ public class SignupPanel extends JPanel {
         return resizePanel();
     }
 
+    /**
+     * Automatically resize the panel.
+     * @return dimension object of new size.
+     */
     private Dimension resizePanel(){
         final double reduceSizeValue = 0.25;
 
@@ -232,19 +246,43 @@ public class SignupPanel extends JPanel {
         super.paint(g);
     }
 
-    public JLabel GetUserNameLabel(){
+    /**
+     * Get user name label.
+     * @return a JLabel of type username.
+     */
+    public JLabel getUserNameLabel(){
         return userNameLabel;
     }
 
-    public JLabel GetPasswordLabel(){
+    /**
+     * Get the password JLabel.
+     * @return a JLabel of type password.
+     */
+    public JLabel getPasswordLabel(){
         return passwordLabel;
     }
 
-    public JTextField GetUserNameTextField(){
+    /**
+     * Get the username text field.
+     * @return a JTextField of type username.
+     */
+    public JTextField getUserNameTextField(){
         return usernameField;
     }
 
-    public JTextField GetPasswordTextField(){
+    /**
+     * Get the password of text field.
+     * @return a JTextField of type password.
+     */
+    public JTextField getPasswordTextField(){
         return passwordField;
+    }
+
+    /**
+     * Get the main window object which extends JFrame.
+     * @return a main window object.
+     */
+    public MainWindow getMainWindow(){
+        return parentFrame;
     }
 }

@@ -1,10 +1,9 @@
 package UserInterface;
 
+import UserInterface.HomeMenu.HomeLayout;
 import UserInterface.LoginSystem.EntrancePanel;
 import UserInterface.LoginSystem.LoginPanel;
 import UserInterface.LoginSystem.SignupPanel;
-import UserInterface.HomeMenu.HomeLayout;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -20,6 +19,9 @@ public class MainWindow extends JFrame {
         AddEntrancePanel();
     }
 
+    /**
+     * Display entrance panel.
+     */
     public void AddEntrancePanel(){
         JPanel content = new JPanel(new GridBagLayout());
         content.setBorder(new EmptyBorder(20, 20, 20, 20));
@@ -41,6 +43,9 @@ public class MainWindow extends JFrame {
         setSize(1280, 720);
     }
 
+    /**
+     * Displays sign up panel.
+     */
     public void AddSignUpPanel(){
         JPanel content = new JPanel(new GridBagLayout());
         content.setBorder(new EmptyBorder(20,20, 20, 20));
@@ -49,17 +54,20 @@ public class MainWindow extends JFrame {
         add(new SignupPanel(this));
         setSize(1280, 720);
     }
-
-    public void AddHomeMenuPanel(){
-
+    
+    /**
+     * Display home menu panel.
+     */
+    public void addHomeMenu(){
+        //TODO: Replace HomePanel with HomeLayout.
+        HomeLayout home_Window = new HomeLayout();
         JPanel content = new JPanel(new GridBagLayout());
         content.setBorder(new EmptyBorder(20,20, 20, 20));
         content.setBackground(Color.decode("#4d4d4d"));
         setContentPane(content);
         add(new HomeLayout(this));
         setSize(1280, 720);
-
-
+        add(home_Window);
+        setSize(1280, 720);
     }
-
 }

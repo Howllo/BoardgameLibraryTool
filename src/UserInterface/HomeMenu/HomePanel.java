@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class HomePanel extends JPanel {
-
     JPanel home_panel = new JPanel();
 
 public HomePanel(){
