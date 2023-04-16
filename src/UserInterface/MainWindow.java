@@ -60,7 +60,7 @@ public class MainWindow extends JFrame {
      */
     public void addHomeMenu(){
         //TODO: Replace HomePanel with HomeLayout.
-        HomeLayout home_Window = new HomeLayout();
+        HomeLayout home_Window = new HomeLayout(this);
         JPanel content = new JPanel(new GridBagLayout());
         content.setBorder(new EmptyBorder(20,20, 20, 20));
         content.setBackground(Color.decode("#4d4d4d"));

@@ -3,10 +3,11 @@ package UserInterface.HomeMenu;
 import javax.swing.*;
 import java.awt.*;
 import UserInterface.DimensionCompare;
+import UserInterface.MainWindow;
 
 public class HomeLayout extends JPanel {
-    JFrame parentFrame;
-    public HomeLayout(JFrame parent) {
+    MainWindow parentFrame;
+    public HomeLayout(MainWindow parent) {
 
         parentFrame = parent;
         parentFrame.setSize(1280, 720);

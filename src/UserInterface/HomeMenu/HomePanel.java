@@ -2,7 +2,6 @@ package UserInterface.HomeMenu;
 
 import Backend.Database.GameFilters;
 import DataParsing.Game;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,31 +17,20 @@ public HomePanel(){
     setBackground(Color.decode("#333333"));
 
     HomeButtons();
-
-
-
 }
 
     public HomePanel(int s, int a){
 
         setSize(s, a);
         setBackground(Color.decode("#333333"));
-
-
        // FilterButton();
-
-
     }
 
     public HomePanel(int w){
 
         setSize(w, 300);
         setBackground(Color.decode("#333333"));
-
-
         GameGrid();
-
-
     }
 
 
@@ -77,17 +65,11 @@ private void HomeButtons(){
 }
 
 private void AccountButton(){
-
     JButton account_profile = new JButton();
-
-
-
     account_profile.setBackground(Color.decode("#0071bc"));
     account_profile.setText("SPENCER");
     account_profile.setForeground(Color.white);
     add(account_profile);
-
-
 }
 
 /*private void FilterButton(){
