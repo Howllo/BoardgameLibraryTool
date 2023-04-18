@@ -17,8 +17,8 @@ public class HomeLayout extends JPanel {
         parentFrame.getContentPane().setBackground(Color.decode("#4d4d4d"));
 
         AddHomePanel();
-     //   AddAccountPanel();
-      //  AddFilterPanel();
+        //   AddAccountPanel();
+        //  AddFilterPanel();
         AddGameGrid();
     }
 
@@ -29,8 +29,9 @@ public class HomeLayout extends JPanel {
     public void AddHomePanel(){
 
         HomePanel home_panel = new HomePanel();
-        home_panel.setLayout(new BorderLayout());
-        add(home_panel, BorderLayout.WEST);
+        home_panel.setLayout(new GridLayout(0,4));
+        home_panel.setBounds(50, 500, 100, 100);
+        add(home_panel);//, BorderLayout.NORTH);
         home_panel.setVisible(true);
     }
 
