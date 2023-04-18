@@ -10,13 +10,15 @@ public class GameFilterUI extends JScrollPane {
 
     GameFilterUI(ArrayList<Game> games){
         setLocation(375, 75);
+        getViewport().setLayout(new BorderLayout());
         getViewport().setBackground(Color.decode("#333333"));
         setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
 
         for (Game game : games) {
             GameRowPanel createGameRow = new GameRowPanel(game, this);
+            createGameRow.setVisible(true);
             gameRowPanels.add(createGameRow);
-            getViewport().add(createGameRow, null);
+            getViewport().add(createGameRow, BorderLayout.CENTER);
         }
         setVisible(true);
     }

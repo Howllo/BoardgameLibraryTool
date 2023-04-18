@@ -1,6 +1,8 @@
 package UserInterface.HomeMenu;
 
 import DataParsing.Game;
+import UserInterface.JTextButton;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,7 +14,6 @@ public class GameRowPanel extends JPanel {
     GameRowPanel(Game inGame, GameFilterUI inGameFilterUI){
         game = inGame;
         setVisible(true);
-        setLayout(new GridBagLayout());
 
         // Set
         gameFilterUI = inGameFilterUI;
@@ -25,9 +26,15 @@ public class GameRowPanel extends JPanel {
     }
 
     private void createNewTitleLabel(){
-        JLabel titleText = new JLabel(game.getTitle());
+        JTextButton titleText = new JTextButton(game.getTitle());
         JLabel description = new JLabel(game.getDescription());
         titleText.setVisible(true);
+
+        // Set Colors
+        titleText.setOnMouseClick(Color.decode("#636363"));
+        titleText.setOnMouseHover(Color.decode("#828282"));
+        titleText.setOnMouseExit(Color.decode("#d7d7d7"));
+
         add(titleText);
     }
 
