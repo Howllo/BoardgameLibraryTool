@@ -3,13 +3,17 @@ package UserInterface.HomeMenu;
 import Backend.Database.Database;
 import DataParsing.Game;
 import javax.swing.*;
+import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class HomePanel extends JPanel {
-    JPanel home_panel = new JPanel();
+    private JPanel home_panel = new JPanel();
+    private JTable displayGames;
+    JScrollPane scroll;
+
 
     public HomePanel(){
         setSize(1166, 1000);
@@ -19,115 +23,63 @@ public class HomePanel extends JPanel {
     public HomePanel(int s, int a){
         setSize(s, a);
         setBackground(Color.decode("#333333"));
-       // FilterButton();
     }
 
     public HomePanel(int w){
         setSize(w, 300);
         setBackground(Color.decode("#333333"));
-        GameGrid(Database.getInstance().GetGameFilter().GetZToANameFilter());
+        createTable(Database.getInstance().GetGameList());
     }
 
+    private void HomeButtons(){
 
-private void HomeButtons(){
+        JButton search = new JButton();
 
-    JButton search = new JButton();
+       // setLayout(new GridLayout(0,3));
 
-   // setLayout(new GridLayout(0,3));
+        search.setBackground(Color.decode("#0071bc"));
+        search.setText("SEARCH");
+        search.setForeground(Color.white);
+        add(search);
 
-    search.setBackground(Color.decode("#0071bc"));
-    search.setText("SEARCH");
-    search.setForeground(Color.white);
-    add(search);
+        JButton library = new JButton();
 
-    JButton library = new JButton();
+        library.setBackground(Color.decode("#0071bc"));
+        library.setText("LIBRARY");
+        library.setForeground(Color.white);
+        add(library);
 
-    library.setBackground(Color.decode("#0071bc"));
-    library.setText("LIBRARY");
-    library.setForeground(Color.white);
-    add(library);
+        JButton collections = new JButton();
 
-    JButton collections = new JButton();
+        collections.setBackground(Color.decode("#0071bc"));
+        collections.setText("COLLECTIONS");
+        collections.setForeground(Color.white);
+        add(collections);
+        AccountButton();
+    }
 
-    collections.setBackground(Color.decode("#0071bc"));
-    collections.setText("COLLECTIONS");
-    collections.setForeground(Color.white);
-    add(collections);
-    AccountButton();
-}
+    private void AccountButton(){
+        JButton account_profile = new JButton();
+        account_profile.setBackground(Color.decode("#0071bc"));
+        account_profile.setText("SPENCER");
+        account_profile.setForeground(Color.white);
+        add(account_profile);
+    }
 
-private void AccountButton(){
-    JButton account_profile = new JButton();
-    account_profile.setBackground(Color.decode("#0071bc"));
-    account_profile.setText("SPENCER");
-    account_profile.setForeground(Color.white);
-    add(account_profile);
-}
+    private void createTable(ArrayList<Game> inList){
+        TableCellRenderer tableCellRenderer;
+        displayGames = new JTable(new JTableButton(inList));
+        tableCellRenderer = displayGames.getDefaultRenderer(JButton.class);
+        //displayGames.setDefaultRenderer(JButton.class, new JTableButtonRenderer(tableCellRenderer));
 
-/*private void FilterButton(){
+        displayGames.getTableHeader().setReorderingAllowed(false);
+        displayGames.setRowSelectionAllowed(false);
+        displayGames.setAutoCreateRowSorter(true);
 
-    JButton name_filter = new JButton();
-
-    // setLayout(new GridLayout(0,3));
-
-    name_filter.setBackground(Color.decode("#0071bc"));
-    name_filter.setText("TITLE");
-    name_filter.setForeground(Color.white);
-    add(name_filter);
-
-    int top = 200;
-    int left = top;
-    int bottom = 2 * top;
-    int right = left;
-    setBorder(BorderFactory.createEmptyBorder(top, left, bottom, right));
-
-}*/
-
-private void GameGrid(ArrayList<Game> inList){
-    GameFilterUI filterUI = new GameFilterUI(inList);
-    add(filterUI, BorderLayout.WEST);
-    filterUI.setVisible(true);
-    setVisible(true);
-
-
-  /*  JButton name_filter = new JButton();
-  //  ArrayList<JButton> game = new ArrayList<>();
-
-    // setLayout(new GridLayout(0,3));
-
-    name_filter.setBackground(Color.decode("#0071bc"));
-    name_filter.setText("TITLE");
-    name_filter.setForeground(Color.red);
-    name_filter.setFocusPainted(false);
-
-    add(name_filter);
-
-    int top = 200;
-    int left = top;
-    int bottom = 2 * top;
-    int right = left;
-    setBorder(BorderFactory.createEmptyBorder(top, left, bottom, right));
-
-    setLayout(new GridLayout(0,1));
-    setBackground(Color.decode("#0071bc"));
-    add(new Button("Call of Duty"));
-    add(new Button("Last of Us"));
-    add(new Button("Overcooked"));
-    add(new Button("Resident Evil 4"));
-
-    top = 25;
-    left = top;
-    bottom = 2 * top;
-    right = left;
-    setBorder(BorderFactory.createEmptyBorder(top, left, bottom, right));
-
-    name_filter.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e){
-            name_filter.setText("TEST");
-        }
-    });*/
-}
+        scroll = new JScrollPane(displayGames);
+        add(scroll, BorderLayout.WEST);
+        setVisible(true);
+    }
 
     private static JComponent createComponent(String s) {
         JLabel l = new JLabel(s);

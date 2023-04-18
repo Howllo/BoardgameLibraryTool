@@ -52,7 +52,7 @@ public class HomeLayout extends JPanel {
 
     public void AddGameGrid(){
 
-        HomePanel game_grid = new HomePanel(200);
+        HomePanel game_grid = new HomePanel(500);
         game_grid.setLayout(new GridLayout(0,1));
         add(game_grid);
         game_grid.setVisible(true);
