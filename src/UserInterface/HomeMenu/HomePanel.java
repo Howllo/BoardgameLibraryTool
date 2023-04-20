@@ -45,7 +45,7 @@ public class HomePanel extends JPanel implements ActionListener {
 
     private void HomeButtons() {
 
-        JButton searchButton = new JButton("Enter");
+        JButton searchButton = new JButton("Open Search");
         JTextField searchField = new JTextField("Search...");
         searchField.addFocusListener(new FocusListener() {
             @Override
@@ -62,6 +62,7 @@ public class HomePanel extends JPanel implements ActionListener {
                 if (searchField.getText().isEmpty()) {
                     searchField.setText("Search...");
 
+
                 }
             }
         });
@@ -69,8 +70,11 @@ public class HomePanel extends JPanel implements ActionListener {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Perform search operation here
-
+                try {
+                    search(searchField);
+                } catch (IOException f) {
+                    throw new RuntimeException(f);
+                }
 
             }
         });
@@ -93,11 +97,7 @@ public class HomePanel extends JPanel implements ActionListener {
         add(collections);
 
         AccountButton();
-        try {
-            search();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
     }
 
     private void AccountButton() {
@@ -122,7 +122,7 @@ public class HomePanel extends JPanel implements ActionListener {
         add(scroll, BorderLayout.WEST);
         setVisible(true);
     }
-    public void search() throws IOException {
+    public void search(JTextField textField) throws IOException {
         ArrayList<Game> temp = new ArrayList<Game>();
         int i = 0;
         new Database();
@@ -135,21 +135,16 @@ public class HomePanel extends JPanel implements ActionListener {
             rowData[i][0] = o;
             i++;
         }
-        JTextField textField = new JTextField(10);
-        JLabel searchLabel = new JLabel("Search");
         DefaultTableModel model;
         model = new DefaultTableModel(rowData, columnNames);
         TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
         JTable table = new JTable(model);
         table.setRowSorter(sorter);
+
         JScrollPane results = new JScrollPane(table);
-        add(searchLabel);
-        add(textField);
-        textField.setBackground(Color.decode("#0071bc"));;
-        textField.setForeground(Color.WHITE);
-        add(textField);
         JFrame searchResults = new JFrame();
         searchResults.setVisible(true);
+        searchResults.setBounds(800,600,800,800);
         searchResults.add(results);
         textField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
