@@ -1,12 +1,15 @@
 package DataParsing;
 
+import java.util.ArrayList;
+import java.util.function.IntFunction;
+
 /**
  * Represents a single DataParsing.Game with data from BoardGameGeek.com
  * This is a very primitive game class, used to illustrate how to gather
  * information from the Java Document Object Model (DOM).
  * See main program for description of file contents
  */
-public class Game {
+public class Game extends ArrayList<String> {
     /**
      * Constructor to populate a new DataParsing.Game object with retrieved data
      * @param title  The full title of the game
@@ -94,5 +97,10 @@ public class Game {
      */
     public String getDescription(){
         return description;
+    }
+
+    @Override
+    public <T> T[] toArray(IntFunction<T[]> generator) {
+        return super.toArray(generator);
     }
 }

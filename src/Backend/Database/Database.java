@@ -1,6 +1,5 @@
 package Backend.Database;
 
-import Backend.User.Review;
 import Backend.User.UserData;
 import DataParsing.Game;
 import DataParsing.UserDataParser;
@@ -28,19 +27,19 @@ public final class Database {
 
     //region Data Director Pathing
     private final String gameDataXML = "bgg90Games.xml";
-    private final String _userDataPath = "data\\user_data\\";
+    private final String _userDataPath = "Desktop\\";
     private final File gameDataBase = new File(gameDataXML);
     private final String absPath = gameDataBase.getAbsolutePath();
     private final String gameDataPath = absPath.replace(gameDataXML, _userDataPath);
     private final HashMap<String, Game> gameHash = new HashMap<String, Game>();
     //endregion
 
-    private ArrayList<Game> gameList;
+    private static ArrayList<Game> gameList;
     private final GameFilters gameFilters;
     private UserData userData;
     private UserDataParser userDataParser;
 
-    private Database() throws IOException {
+    public Database() throws IOException {
 
         // Create XML Parser Utility
         try{
@@ -79,9 +78,10 @@ public final class Database {
 
     /**
      * Get the GameList for O(n).
+     *
      * @return Returns a game ArrayList of game objects.
      */
-    public ArrayList<Game> GetGameList(){
+    public static ArrayList GetGameList(){
         return gameList;
     }
 

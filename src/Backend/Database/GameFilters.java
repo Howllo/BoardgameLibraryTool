@@ -6,14 +6,17 @@ import DataParsing.Game;
 //=======
 
 //>>>>>>> master
+import javax.swing.*;
+import javax.swing.table.TableModel;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
-public class GameFilters {
+public class GameFilters extends RowSorter<TableModel> {
     ArrayList<Game> oldestToNewestReleaseGameFilter = new ArrayList<>();
     ArrayList<Game> newestToOldestReleaseGameFilter = new ArrayList<>();
-    ArrayList<Game> aToZNameGameFilter = new ArrayList<>();
-    ArrayList<Game> zToANameGameFilter = new ArrayList<>();
+    static ArrayList<Game> aToZNameGameFilter = new ArrayList<>();
+    static ArrayList<Game> zToANameGameFilter = new ArrayList<>();
     ArrayList<Game> smallestToLargeMinPlayerGameFilter = new ArrayList<>();
     ArrayList<Game> largestToSmallestMinPLayerGameFilter = new ArrayList<>();
     ArrayList<Game> smallestToLargestMaxPlayerGameFilter = new ArrayList<>();
@@ -44,6 +47,8 @@ public class GameFilters {
         CreateSmallestToLargestMaxPlayerGameFilter(games);
         CreateLargestToSmallestMaxPlayerGameFilter(games);
     }
+
+
 
     /***
      * Create a sorted array list based on year release from oldest to newest.
@@ -201,7 +206,7 @@ public class GameFilters {
      * Get an array list of Z to A titles.
      * @return Array list of Z to A title game objects.
      */
-    public ArrayList<Game> GetZToANameFilter(){
+    public static ArrayList<Game> GetZToANameFilter(){
         return zToANameGameFilter;
     }
 
@@ -227,6 +232,76 @@ public class GameFilters {
      */
     public ArrayList<Game> GetSmallestToLargestMaxPlayerFilter(){
         return smallestToLargestMaxPlayerGameFilter;
+    }
+
+    @Override
+    public TableModel getModel() {
+        return null;
+    }
+
+    @Override
+    public void toggleSortOrder(int column) {
+
+    }
+
+    @Override
+    public int convertRowIndexToModel(int index) {
+        return 0;
+    }
+
+    @Override
+    public int convertRowIndexToView(int index) {
+        return 0;
+    }
+
+    @Override
+    public void setSortKeys(List<? extends SortKey> keys) {
+
+    }
+
+    @Override
+    public List<? extends SortKey> getSortKeys() {
+        return null;
+    }
+
+    @Override
+    public int getViewRowCount() {
+        return 0;
+    }
+
+    @Override
+    public int getModelRowCount() {
+        return 0;
+    }
+
+    @Override
+    public void modelStructureChanged() {
+
+    }
+
+    @Override
+    public void allRowsChanged() {
+
+    }
+
+    @Override
+    public void rowsInserted(int firstRow, int endRow) {
+
+    }
+
+    @Override
+    public void rowsDeleted(int firstRow, int endRow) {
+
+    }
+
+    @Override
+    public void rowsUpdated(int firstRow, int endRow) {
+
+    }
+
+    @Override
+    public void rowsUpdated(int firstRow, int endRow, int column) {
+
     }
 
 //<<<<<<< parser_update

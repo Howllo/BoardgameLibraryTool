@@ -36,7 +36,6 @@ public class HomeLayout extends JPanel {
     }
 
   /*  public void AddAccountPanel(){
-
         HomePanel account_panel = new HomePanel(400, 300);
         layout.setLayout(new BorderLayout());
         layout.add(account_panel, BorderLayout.WEST);
@@ -44,7 +43,6 @@ public class HomeLayout extends JPanel {
     }*/
 
       /* public void AddFilterPanel(){
-
         HomePanel filter_panel = new HomePanel(400, 300);
         parentFrame.setLayout(new BorderLayout());
         parentFrame.add(filter_panel, BorderLayout.SOUTH);
