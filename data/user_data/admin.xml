@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <user user-type="1">
     <username>admin</username>
-    <userID>1</userID>
     <password>rootuser</password>
+    <userID>1</userID>
+    <review type="342942">
+        <playerID>1</playerID>
+        <reviewScore>9</reviewScore>
+        <reviewText>Game review... testing... testing... testing</reviewText>
+        <reviewGameID>342942</reviewGameID>
+        <gameTitle>Ark Nova</gameTitle>
+    </review>
 </user>

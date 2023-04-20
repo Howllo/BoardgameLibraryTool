@@ -4,7 +4,6 @@ import Backend.Database.Database;
 import DataParsing.Game;
 import UserInterface.MainWindow;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.*;
@@ -91,6 +90,7 @@ public class HomePanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Database.getInstance().SaveUserData();
+                JOptionPane.showMessageDialog(HomePanel.this, "User data was saved!");
             }
         });
         menuBar.add(account_profile);

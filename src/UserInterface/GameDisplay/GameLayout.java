@@ -37,6 +37,7 @@ public class GameLayout extends JFrame {
         game_page.setBackground(Color.decode("#333333"));
         //game_page.setSize(600, 500);
         JTextArea textarea = new JTextArea("Title:\t\t" + game_info.getTitle() + "    \n" + "Publication Year:\t" + game_info.getPublicationYear() + "\n" + "Minimum Player(s):\t" + game_info.getMinPlayers() + "\n" + "Maximum Player(s):\t" + game_info.getMaxPlayer() + "\n");
+        textarea.setColumns(game_info.getTitle().length());
         textarea.setForeground(Color.white);
         textarea.setBackground(Color.decode("#4d4d4d"));
         textarea.setEditable(false);
@@ -54,9 +55,13 @@ public class GameLayout extends JFrame {
         }
 
         JPanel textAreaPanel = new JPanel();
+        Review getReview = Database.getInstance().getUserData().GetReviewBasedOnGameID(game);
 
         textAreaPanel.setBackground(Color.decode("#333333"));
         userReview = new JTextArea("Add review...");
+        if(getReview != null){
+            userReview.setText(getReview.getReviewText());
+        }
         userReview.setLineWrap(true);
         userReview.setColumns(36);
         userReview.setBackground(Color.decode("#4d4d4d"));
@@ -95,6 +100,9 @@ public class GameLayout extends JFrame {
             return;
         }
 
+        // Get the review.
+        Review getReview = Database.getInstance().getUserData().GetReviewBasedOnGameID(game);
+
         int playerID = Database.getInstance().getUserData().userID;
         JPanel userReviewPanel = new JPanel();
         userReviewPanel.setBackground(Color.decode("#4d4d4d"));
@@ -107,7 +115,12 @@ public class GameLayout extends JFrame {
 
         // Create User Score
         JComboBox<Integer> userScore = new JComboBox<>(score);
-        userScore.setSelectedIndex(5);
+
+        if(getReview != null){
+            userScore.setSelectedIndex(getReview.getPlayerScore());
+        } else {
+            userScore.setSelectedIndex(5);
+        }
         userReviewPanel.add(userScore);
 
         JButton submitReview = new JButton("Submit Review");
@@ -117,6 +130,7 @@ public class GameLayout extends JFrame {
                 Review review = new Review(playerID, userScore.getSelectedIndex(), userReview.getText(), game.getGameId());
                 game.setReviews(review);
                 Database.getInstance().getUserData().addNewReview(review);
+                JOptionPane.showMessageDialog(GameLayout.this, "Review was submitted!");
             }
         });
         userReviewPanel.add(submitReview);

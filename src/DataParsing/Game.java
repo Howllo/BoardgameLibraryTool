@@ -1,5 +1,6 @@
 package DataParsing;
 
+import Backend.Database.Database;
 import Backend.User.Review;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class Game {
         this.id = id;
         this.minPlayers = minPlayers;
         this.maxPlayer = maxPlayer;
+        this.reviews = new ArrayList<>();
     }
 
     /**
@@ -42,7 +44,8 @@ public class Game {
     private final Integer minPlayers;     // min players
     private final Integer maxPlayer;      // max players
     private final String description;
-    private ArrayList<Review> reviews;
+    private final ArrayList<Review> reviews;
+
     /**
      * Get Game ID.
      * @return String object of the game id.
@@ -112,6 +115,14 @@ public class Game {
      * @param review Takes in a review object to be added to reviews.
      */
     public void setReviews(Review review){
+        for(Review review1: reviews){
+            if(review1.getGameID().equals(review.getGameID())){
+                review1.setScore(review.getPlayerScore());
+                review1.setReviewText(review.getReviewText());
+                return;
+            }
+        }
+
         reviews.add(review);
     }
 }

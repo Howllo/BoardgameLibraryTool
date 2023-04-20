@@ -1,6 +1,8 @@
 package Backend.User;
 
 import Backend.Database.Database;
+import DataParsing.Game;
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -44,6 +46,27 @@ public class UserData {
      * @param review Takes in a Review object to be added.
      */
     public void addNewReview(Review review){
+        for(Review review1 : userReviews){
+            if(review1.getGameID().equals(review.getGameID())){
+                review1.setScore(review.getPlayerScore());
+                review1.setReviewText(review.getReviewText());
+                return;
+            }
+        }
         userReviews.add(review);
+    }
+
+    /**
+     * Get the review based on a game ID.
+     * @param game Takes in a game to get the game ID.
+     * @return a review object of the review.
+     */
+    public final Review GetReviewBasedOnGameID(Game game){
+        for(Review review: userReviews){
+            if(review.getGameID().equals(game.getGameId())){
+                return review;
+            }
+        }
+        return null;
     }
 }
