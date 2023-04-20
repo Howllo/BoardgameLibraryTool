@@ -3,10 +3,17 @@ package UserInterface.HomeMenu;
 import Backend.Database.Database;
 import DataParsing.Game;
 import UserInterface.MainWindow;
+
+import javax.naming.directory.SearchResult;
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class HomePanel extends JPanel {
@@ -59,6 +66,11 @@ public class HomePanel extends JPanel {
         Font fontSearch = search.getFont().deriveFont(Font.PLAIN, 16f);
         search.setFont(fontSearch);
         menuBar.add(search);
+        JButton searchButton = new JButton();
+        searchButton.setBackground(Color.decode("#0071bc"));
+        searchButton.setText("Enter");
+        searchButton.setForeground(Color.white);
+        menuBar.add(searchButton);
 
         search.addFocusListener(new FocusListener() {
             @Override
@@ -73,12 +85,19 @@ public class HomePanel extends JPanel {
                 }
             }
         });
-        JButton searchButton = new JButton();
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<Game> temp = new ArrayList<Game>();
+                temp = Database.getInstance().GetGameList();
+                try {
+                    searching(temp, search);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
 
-        searchButton.setBackground(Color.decode("#0071bc"));
-        searchButton.setText("Enter");
-        searchButton.setForeground(Color.white);
-        menuBar.add(searchButton);
 
         JButton account_profile = new JButton();
 
@@ -96,6 +115,48 @@ public class HomePanel extends JPanel {
         menuBar.add(account_profile);
 
         add(menuBar);
+    }
+    public void searching(ArrayList<Game> temp,JTextField textField) throws IOException {
+        int i = 0;
+        String[] columnNames = {"Results"};
+        Object[][] rowData = new Object[temp.size()][1];
+        for (Object empty : temp)
+        {
+            Object o = temp.get(i);
+            rowData[i][0] = o;
+            i++;
+        }
+        DefaultTableModel model;
+        model = new DefaultTableModel(rowData, columnNames);
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+        JTable table = new JTable(model);
+        table.setRowSorter(sorter);
+        JScrollPane results = new JScrollPane(table);
+        JFrame searchResults = new JFrame();
+        searchResults.setVisible(true);
+        searchResults.setBounds(800,600,800,800);
+        searchResults.add(results);
+        textField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                search(textField.getText());
+            }
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                search(textField.getText());
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                search(textField.getText());
+            }
+            public void search(String str) {
+                if (str.length() == 0) {
+                    sorter.setRowFilter(null);
+                } else {
+                    sorter.setRowFilter(RowFilter.regexFilter(str));
+                }
+            }
+        });
     }
 
     /**
