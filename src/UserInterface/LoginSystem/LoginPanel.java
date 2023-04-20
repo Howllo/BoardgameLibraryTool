@@ -113,6 +113,9 @@ public class LoginPanel extends JPanel {
 
             @Override
             public void focusLost(FocusEvent e) {
+                if(usernameField.getText().equals("")){
+                    usernameField.setText("Username...");
+                }
             }
         });
 
@@ -128,6 +131,10 @@ public class LoginPanel extends JPanel {
 
             @Override
             public void focusLost(FocusEvent e) {
+                if(passwordField.getPassword().length == 0){
+                    passwordField.setText("Password...");
+                    passwordField.setEchoChar((char)0);
+                }
             }
         });
     }

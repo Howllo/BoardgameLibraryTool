@@ -1,23 +1,21 @@
 package UserInterface.HomeMenu;
 
+import Backend.Database.Database;
 import DataParsing.Game;
+import UserInterface.GameDisplay.GameLayout;
 import javax.swing.*;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 
-// Base off of: http://www.java2s.com/Code/Java/Swing-Components/ButtonTableExample.htm
+// Credit goes to Java2s: http://www.java2s.com/Code/Java/Swing-Components/ButtonTableExample.htm
 class JTableButtonRenderer extends JButton implements TableCellRenderer{
     private TableCellRenderer tableCellRenderer;
-    String title;
 
-    public JTableButtonRenderer(TableCellRenderer renderer, String title){
+    public JTableButtonRenderer(TableCellRenderer renderer){
         tableCellRenderer = renderer;
-        this.title = title;
     }
 
     @Override
@@ -26,86 +24,78 @@ class JTableButtonRenderer extends JButton implements TableCellRenderer{
             setForeground(table.getSelectionForeground());
             setBackground(table.getSelectionBackground());
         } else {
-            setForeground(table.getForeground());
+            setForeground(Color.white);
             setBackground(Color.decode("#0071bc"));
         }
-        setText(title);
 
+        setText((value == null) ? "" : value.toString());
         return this;
     }
 }
 
-public class JTableButton extends AbstractTableModel {
-    public String[] cols = {"Title", "Release", "Min Players", "Max Players"};
-    public Object[][] rows = {};
+public class JTableButton extends DefaultCellEditor {
+    protected JButton button;
+    private String label;
+    private boolean isPushed;
+    private boolean displayPopup;
 
-    JTableButton(ArrayList<Game> game){
-        GameGrid(game);
-    }
-
-    private void GameGrid(ArrayList<Game> inList){
-        for(Game game : inList){
-            if(game.getTitle().equals(inList.get(0).getTitle()))
-                continue;
-            rows = addObjectArray(game.getTitle(), game.getPublicationYear().toString(), game.getMinPlayers().toString(), game.getMaxPlayer().toString());
-        }
-    }
-
-    public Object[][] addObjectArray(String title, String releaseDate, String minPlayer, String maxPlayer){
-        Object[][] obj = new Object[rows.length + 1][4];
-        int size = rows.length;
-
-        System.arraycopy(rows, 0, obj, 0, size);
-
-        JButton button = new JButton(title);
+    JTableButton(JCheckBox checkBox){
+        super(checkBox);
+        button = new JButton();
+        button.setOpaque(true);
+        button.setForeground(Color.white);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Add Popup!");
-                JOptionPane.showMessageDialog(button, "Push!");
+                //button.setText();
+            }
+        });
+    }
+
+    @Override
+    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+        if(isSelected){
+            button.setForeground(table.getSelectionForeground());
+            button.setBackground(table.getSelectionBackground());
+        } else {
+            button.setForeground(Color.white);
+            button.setBackground(Color.decode("#0071bc"));
+        }
+        label = (value == null) ? "" : value.toString();
+        button.setText(label);
+
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(!displayPopup){
+                    Game game =  Database.getInstance().GetGameFromHashTitle(label);
+                    GameLayout layout = new GameLayout(game);
+                    layout.setVisible(true);
+                    displayPopup = true;
+                }
             }
         });
 
-        if(size > 0){
-            obj[size - 1][0] = button;
-            obj[size - 1][1] = releaseDate;
-            obj[size - 1][2] = minPlayer;
-            obj[size - 1][3] = maxPlayer;
-        } else {
-            obj[0][0] = button;
-            obj[0][1] = releaseDate;
-            obj[0][2] = minPlayer;
-            obj[0][3] = maxPlayer;
+        displayPopup = false;
+        isPushed = true;
+        return button;
+    }
+
+    public Object getCellEditorValue(){
+        if(isPushed){
+            //JOptionPane.showMessageDialog(button, label + " Test");
         }
-
-        return obj;
-    }
-
-    public String getColumnName(int column){
-        return cols[column];
+        isPushed = false;
+        return new String(label);
     }
 
     @Override
-    public int getRowCount() {
-        return rows.length;
+    public boolean stopCellEditing() {
+        isPushed = false;
+        return super.stopCellEditing();
     }
 
-    @Override
-    public int getColumnCount() {
-        return cols.length;
-    }
-
-    @Override
-    public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return false;
-    }
-
-    @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
-        return rows[rowIndex][columnIndex];
-    }
-
-    public Class getColumnClass(int column){
-        return getValueAt(0, column).getClass();
+    protected void fireEditingStopped(){
+        super.fireEditingStopped();
     }
 }

@@ -1,6 +1,5 @@
 package Backend.Database;
 
-import Backend.User.Review;
 import Backend.User.UserData;
 import DataParsing.Game;
 import DataParsing.UserDataParser;
@@ -32,7 +31,8 @@ public final class Database {
     private final File gameDataBase = new File(gameDataXML);
     private final String absPath = gameDataBase.getAbsolutePath();
     private final String gameDataPath = absPath.replace(gameDataXML, _userDataPath);
-    private final HashMap<String, Game> gameHash = new HashMap<String, Game>();
+    private final HashMap<String, Game> gameHashID = new HashMap<>();
+    private final HashMap<String, Game> gameHashMapTitle = new HashMap<>();
     //endregion
 
     private ArrayList<Game> gameList;
@@ -49,7 +49,8 @@ public final class Database {
             XMLParserUtility parser = new XMLParserUtility(path);
             gameList = parser.retrieveGameList();
             for (Game game: gameList){
-                gameHash.put(game.getGameId(), game);
+                gameHashID.put(game.getGameId(), game);
+                gameHashMapTitle.put(game.getTitle(), game);
             }
         } catch (FileNotFoundException e1){
             System.out.println("File not found.");
@@ -70,11 +71,20 @@ public final class Database {
     }
 
     /**
-     * Get the GameHash of the database.
-     * @return Returns the of Hashmap[Game ID String, Game].
+     * Get game from a hash map using the game id.
+     * @return the of Hashmap[Game ID String, Game].
      */
-    public Game GetGameFromHash(String gameID){
-        return gameHash.get(gameID);
+    public Game GetGameFromHashGameID(String gameID){
+        return gameHashID.get(gameID);
+    }
+
+    /**
+     *
+     * @param title Get game from a hash map by using the game title.
+     * @return the game from HashMap[Game Title, Game].
+     */
+    public Game GetGameFromHashTitle(String title){
+        return gameHashMapTitle.get(title);
     }
 
     /**
@@ -152,6 +162,14 @@ public final class Database {
      */
     public String getGameDataPath(){
         return gameDataPath;
+    }
+
+    /**
+     * Get the user data object.
+     * @return the UserData object.
+     */
+    public UserData getUserData(){
+        return userData;
     }
 
     /**

@@ -1,6 +1,6 @@
 package UserInterface;
 
-import UserInterface.HomeMenu.HomeLayout;
+import UserInterface.HomeMenu.HomePanel;
 import UserInterface.LoginSystem.EntrancePanel;
 import UserInterface.LoginSystem.LoginPanel;
 import UserInterface.LoginSystem.SignupPanel;
@@ -17,7 +17,7 @@ public class MainWindow extends JFrame {
         getContentPane().setBackground(Color.decode("#4d4d4d"));
         setLayout(null);
         AddEntrancePanel();
-        setResizable(false);
+        //setResizable(false);
     }
 
     /**
@@ -61,7 +61,7 @@ public class MainWindow extends JFrame {
      */
     public void addHomeMenu(){
         //TODO: Replace HomePanel with HomeLayout.
-        HomeLayout home_Window = new HomeLayout(this);
+        HomePanel home_Window = new HomePanel(this);
         JPanel content = new JPanel(new GridBagLayout());
         content.setBorder(new EmptyBorder(20,20, 20, 20));
         content.setBackground(Color.decode("#4d4d4d"));

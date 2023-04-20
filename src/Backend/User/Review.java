@@ -16,7 +16,7 @@ public class Review implements Serializable {
         setScore(playerScore);
         this.playerText = reviewText;
         this.gameID = gameID;
-        this.gameTitle = Database.getInstance().GetGameFromHash(this.gameID).getTitle();
+        this.gameTitle = Database.getInstance().GetGameFromHashGameID(this.gameID).getTitle();
     }
 
     /**

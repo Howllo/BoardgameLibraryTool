@@ -1,5 +1,9 @@
 package DataParsing;
 
+import Backend.User.Review;
+
+import java.util.ArrayList;
+
 /**
  * Represents a single DataParsing.Game with data from BoardGameGeek.com
  * This is a very primitive game class, used to illustrate how to gather
@@ -38,8 +42,7 @@ public class Game {
     private final Integer minPlayers;     // min players
     private final Integer maxPlayer;      // max players
     private final String description;
-    //TODO: Create a ArrayList of Review objects
-
+    private ArrayList<Review> reviews;
     /**
      * Get Game ID.
      * @return String object of the game id.
@@ -94,5 +97,21 @@ public class Game {
      */
     public String getDescription(){
         return description;
+    }
+
+    /**
+     * Get the reviews for the game.
+     * @return ArrayList of review objects.
+     */
+    public ArrayList<Review> GetReviews(){
+        return reviews;
+    }
+
+    /**
+     * Set reviews.
+     * @param review Takes in a review object to be added to reviews.
+     */
+    public void setReviews(Review review){
+        reviews.add(review);
     }
 }
