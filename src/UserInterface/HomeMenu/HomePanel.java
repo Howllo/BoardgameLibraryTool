@@ -3,26 +3,33 @@ package UserInterface.HomeMenu;
 import Backend.Database.Database;
 import DataParsing.Game;
 import UserInterface.MainWindow;
+
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomePanel extends JPanel {
     private MainWindow mainWindow;
     public String[] cols = {"Title", "Release", "Min Players", "Max Players"};
     public Object[][] rows = {};
-
+    public JTable table = new JTable();
     public HomePanel(MainWindow mainWindow) {
         this.mainWindow = mainWindow;
         setSize(1280, 720);
         setLayout(null);
         setBackground(Color.decode("#4d4d4d"));
         HomeButtons();
-        createTable(Database.getInstance().GetGameList());
+        table = createTable(Database.getInstance().GetGameList());
     }
-
     /**
      * Creates menu bar buttons for navigation.
      */
@@ -59,11 +66,15 @@ public class HomePanel extends JPanel {
         Font fontSearch = search.getFont().deriveFont(Font.PLAIN, 16f);
         search.setFont(fontSearch);
         menuBar.add(search);
-
         search.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
                 search.setText("");
+                try {
+                    searching(table, search);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
 
             @Override
@@ -73,12 +84,9 @@ public class HomePanel extends JPanel {
                 }
             }
         });
-        JButton searchButton = new JButton();
 
-        searchButton.setBackground(Color.decode("#0071bc"));
-        searchButton.setText("Enter");
-        searchButton.setForeground(Color.white);
-        menuBar.add(searchButton);
+
+
 
         JButton account_profile = new JButton();
 
@@ -94,15 +102,42 @@ public class HomePanel extends JPanel {
             }
         });
         menuBar.add(account_profile);
-
         add(menuBar);
     }
-
+    public void searching(JTable temp,JTextField textField) throws IOException {
+        temp.setAutoCreateRowSorter(true);
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(temp.getModel());
+        temp.setRowSorter(sorter);
+        temp.setVisible(true);
+        JTable tempTable = new JTable(temp.getModel());
+        add(tempTable);
+        textField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                search(textField.getText());
+            }
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                search(textField.getText());
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                search(textField.getText());
+            }
+            public void search(String str) {
+                if (str.length() == 0) {
+                    sorter.setRowFilter(null);
+                } else {
+                    sorter.setRowFilter(RowFilter.regexFilter(str));
+                }
+            }
+        });
+    }
     /**
      * Create a display table for the games
      * @param inList Takes in an array list of games.
      */
-    private void createTable(ArrayList<Game> inList){
+    private JTable createTable(ArrayList<Game> inList){
         // Create Object Array.
         GameGrid(inList);
 
@@ -115,6 +150,7 @@ public class HomePanel extends JPanel {
                 }
                 return false;
             }
+
         };
 
         TableCellRenderer tableCellRenderer = displayGames.getDefaultRenderer(JButton.class);
@@ -128,9 +164,9 @@ public class HomePanel extends JPanel {
         JScrollPane scroll = new JScrollPane(displayGames);
         scroll.setSize(600, 500);
         scroll.setLocation(320, 125);
-
         add(scroll, BorderLayout.SOUTH);
         setVisible(true);
+        return displayGames;
     }
 
     /**
