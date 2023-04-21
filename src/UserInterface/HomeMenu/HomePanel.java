@@ -104,35 +104,44 @@ public class HomePanel extends JPanel {
         menuBar.add(account_profile);
         add(menuBar);
     }
-    public void searching(JTable temp,JTextField textField) throws IOException {
+
+    /**
+     * Search for certain boards within the list.
+     * @param temp Takes in a
+     * @param searchField
+     * @throws IOException
+     */
+    public void searching(JTable temp,JTextField searchField) throws IOException {
         temp.setAutoCreateRowSorter(true);
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(temp.getModel());
         temp.setRowSorter(sorter);
         temp.setVisible(true);
         JTable tempTable = new JTable(temp.getModel());
         add(tempTable);
-        textField.getDocument().addDocumentListener(new DocumentListener() {
+
+        searchField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                search(textField.getText());
+                search(searchField.getText());
             }
             @Override
             public void removeUpdate(DocumentEvent e) {
-                search(textField.getText());
+                search(searchField.getText());
             }
             @Override
             public void changedUpdate(DocumentEvent e) {
-                search(textField.getText());
+                search(searchField.getText());
             }
             public void search(String str) {
                 if (str.length() == 0) {
                     sorter.setRowFilter(null);
                 } else {
-                    sorter.setRowFilter(RowFilter.regexFilter(str));
+                    sorter.setRowFilter(RowFilter.regexFilter("(?i)" + str));
                 }
             }
         });
     }
+
     /**
      * Create a display table for the games
      * @param inList Takes in an array list of games.
@@ -175,8 +184,6 @@ public class HomePanel extends JPanel {
      */
     private void GameGrid(ArrayList<Game> inList){
         for(Game game : inList){
-            if(game.getTitle().equals(inList.get(0).getTitle()))
-                continue;
             rows = addObjectArray(game);
         }
     }
@@ -195,10 +202,10 @@ public class HomePanel extends JPanel {
 
         // Set Information
         if(size > 0){
-            obj[size - 1][0] = game.getTitle();
-            obj[size - 1][1] = game.getPublicationYear();
-            obj[size - 1][2] = game.getMinPlayers();
-            obj[size - 1][3] = game.getMaxPlayer();
+            obj[size][0] = game.getTitle();
+            obj[size][1] = game.getPublicationYear();
+            obj[size][2] = game.getMinPlayers();
+            obj[size][3] = game.getMaxPlayer();
         } else {
             obj[0][0] = game.getTitle();
             obj[0][1] = game.getPublicationYear();

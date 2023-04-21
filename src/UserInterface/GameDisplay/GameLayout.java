@@ -33,11 +33,12 @@ public class GameLayout extends JFrame {
      * @param game_info Takes in a game object to be parsed.
      */
     private void GameDisplay(Game game_info){
+        if(game_info == null) return;
+
         JPanel game_page = new JPanel();
         game_page.setBackground(Color.decode("#333333"));
-        //game_page.setSize(600, 500);
         JTextArea textarea = new JTextArea("Title:\t\t" + game_info.getTitle() + "    \n" + "Publication Year:\t" + game_info.getPublicationYear() + "\n" + "Minimum Player(s):\t" + game_info.getMinPlayers() + "\n" + "Maximum Player(s):\t" + game_info.getMaxPlayer() + "\n");
-        textarea.setColumns(game_info.getTitle().length());
+        textarea.setColumns(25);
         textarea.setForeground(Color.white);
         textarea.setBackground(Color.decode("#4d4d4d"));
         textarea.setEditable(false);
