@@ -10,15 +10,14 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class GameFilters {
-    ArrayList<Game> oldestToNewestReleaseGameFilter = new ArrayList<>();
-    ArrayList<Game> newestToOldestReleaseGameFilter = new ArrayList<>();
-    ArrayList<Game> aToZNameGameFilter = new ArrayList<>();
-    ArrayList<Game> zToANameGameFilter = new ArrayList<>();
-    ArrayList<Game> smallestToLargeMinPlayerGameFilter = new ArrayList<>();
-    ArrayList<Game> largestToSmallestMinPLayerGameFilter = new ArrayList<>();
-    ArrayList<Game> smallestToLargestMaxPlayerGameFilter = new ArrayList<>();
-    ArrayList<Game> largestToSmallestMaxPlayerGameFilter = new ArrayList<>();
-
+    private ArrayList<Game> oldestToNewestReleaseGameFilter = new ArrayList<>();
+    private ArrayList<Game> newestToOldestReleaseGameFilter = new ArrayList<>();
+    private ArrayList<Game> aToZNameGameFilter = new ArrayList<>();
+    private ArrayList<Game> zToANameGameFilter = new ArrayList<>();
+    private ArrayList<Game> smallestToLargeMinPlayerGameFilter = new ArrayList<>();
+    private ArrayList<Game> largestToSmallestMinPLayerGameFilter = new ArrayList<>();
+    private ArrayList<Game> smallestToLargestMaxPlayerGameFilter = new ArrayList<>();
+    private ArrayList<Game> largestToSmallestMaxPlayerGameFilter = new ArrayList<>();
     /***
      * Create all the filter array list within the contructor.
      * Requires: Array List of game objects.
