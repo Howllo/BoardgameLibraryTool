@@ -13,7 +13,7 @@ public class Review implements Serializable {
 
     public Review(Integer playerID, Integer playerScore, String reviewText, String gameID){
         this.playerID = playerID;
-        setScore(playerScore);
+        setPlayerScore(playerScore);
         this.playerText = reviewText;
         this.gameID = gameID;
         this.gameTitle = Database.getInstance().GetGameFromHashGameID(this.gameID).getTitle();
@@ -23,7 +23,7 @@ public class Review implements Serializable {
      * Set the player score make sure it is within the 0-10 scale.
      * @param score Takes in an int to set the playerScore
      */
-    public void setScore(Integer score){
+    public void setPlayerScore(Integer score){
         if(score > 10){
             playerScore = 10;
             return;
