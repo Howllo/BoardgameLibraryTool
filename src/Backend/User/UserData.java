@@ -48,7 +48,7 @@ public class UserData {
     public void addNewReview(Review review){
         for(Review review1 : userReviews){
             if(review1.getGameID().equals(review.getGameID())){
-                review1.setScore(review.getPlayerScore());
+                review1.setPlayerScore(review.getPlayerScore());
                 review1.setReviewText(review.getReviewText());
                 return;
             }

@@ -14,7 +14,7 @@ public class EntrancePanel extends JPanel {
 
     JButton signUpButton = new JButton("SIGN UP");
     JButton loginButton = new JButton("LOG IN");
-    JButton guessLogin = new JButton("GUESS");
+    JButton guestLogin = new JButton("GUEST");
     GridBagConstraints c = new GridBagConstraints();
 
     // Main Menu
@@ -34,7 +34,7 @@ public class EntrancePanel extends JPanel {
         // Create
         CreateSignupButton();
         CreateLoginButton();
-        CreateGuessLoginButton();
+        CreateGuestLoginButton();
     }
 
     /**
@@ -100,14 +100,14 @@ public class EntrancePanel extends JPanel {
     }
 
     /**
-     * Create button to be used to for accessing guess account.
+     * Create button to be used to for accessing guest account.
      */
-    public void CreateGuessLoginButton(){
+    public void CreateGuestLoginButton(){
         JPanel panel = new JPanel(new BorderLayout());
-        guessLogin.setBackground(Color.decode("#0071bc"));
-        guessLogin.setForeground(Color.white);
-        guessLogin.setFocusPainted(false);
-        panel.add(guessLogin);
+        guestLogin.setBackground(Color.decode("#0071bc"));
+        guestLogin.setForeground(Color.white);
+        guestLogin.setFocusPainted(false);
+        panel.add(guestLogin);
 
         // Constraints
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -121,7 +121,7 @@ public class EntrancePanel extends JPanel {
 
         add(panel, c);
 
-        guessLogin.addActionListener(new ActionListener() {
+        guestLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
