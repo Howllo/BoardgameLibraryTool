@@ -30,6 +30,7 @@ public class HomePanel extends JPanel {
         HomeButtons();
         table = createTable(Database.getInstance().GetGameList());
     }
+
     /**
      * Creates menu bar buttons for navigation.
      */
@@ -85,9 +86,6 @@ public class HomePanel extends JPanel {
             }
         });
 
-
-
-
         JButton account_profile = new JButton();
 
         account_profile.setBackground(Color.decode("#0071bc"));
@@ -107,9 +105,9 @@ public class HomePanel extends JPanel {
 
     /**
      * Search for certain boards within the list.
-     * @param temp Takes in a
-     * @param searchField
-     * @throws IOException
+     * @param temp Takes in a temp table.
+     * @param searchField Takes in a JTextField to process the search data.
+     * @throws IOException Error
      */
     public void searching(JTable temp,JTextField searchField) throws IOException {
         temp.setAutoCreateRowSorter(true);
