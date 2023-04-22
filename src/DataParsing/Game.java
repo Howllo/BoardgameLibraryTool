@@ -117,7 +117,7 @@ public class Game {
     public void setReviews(Review review){
         for(Review review1: reviews){
             if(review1.getGameID().equals(review.getGameID())){
-                review1.setScore(review.getPlayerScore());
+                review1.setPlayerScore(review.getPlayerScore());
                 review1.setReviewText(review.getReviewText());
                 return;
             }

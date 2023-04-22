@@ -43,20 +43,6 @@ public class HomePanel extends JPanel {
         GridBagConstraints con = new GridBagConstraints();
         con.gridwidth = 10;
 
-        JButton browse = new JButton("BROWSE");
-
-        browse.setLocation(0,0);
-        browse.setBackground(Color.decode("#0071bc"));
-        browse.setText("BROWSE");
-        browse.setForeground(Color.white);
-        menuBar.add(browse);
-
-        JButton collections = new JButton();
-
-        collections.setBackground(Color.decode("#0071bc"));
-        collections.setText("COLLECTIONS");
-        collections.setForeground(Color.white);
-        menuBar.add(collections);
 
         JTextField search = new JTextField();
 
