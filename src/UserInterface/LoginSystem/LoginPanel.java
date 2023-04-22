@@ -28,7 +28,7 @@ public class LoginPanel extends JPanel {
     // Forgot Password
     JTextButton forgotButton = new JTextButton("Forgot Password");
 
-    // Login Button
+    // Log in Button
     JButton loginButton = new JButton();
 
     MainWindow parentFrame;
